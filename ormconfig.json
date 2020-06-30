@@ -17,11 +17,11 @@
     }
   },
   {
-    "name": "mongo",
+    "name": "hackathon-mgdb",
     "type": "mongodb",
     "host": "localhost",
-    "port": 27017,
-    "database": "MONGO_DATABASE_NAME",
+    "port": 8707,
+    "database": "hackathon",
     "useUnifiedTopology": true,
     "entities": [
       "./src/modules/**/infra/typeorm/schemas/*.ts"
