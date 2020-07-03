@@ -10,17 +10,19 @@ import {
 
 import User from '@modules/users/infra/typeorm/entities/User';
 
-import uploadConfig from '@config/upload';
-
-import { Exclude, Expose } from 'class-transformer';
-
 @Entity('business')
 class Business {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
+  type: string;
+
+  @Column()
   name: string;
+
+  @Column()
+  desc: string;
 
   @Column()
   email: string;

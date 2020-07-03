@@ -9,11 +9,17 @@ import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepo
 import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
 import UserTokensRepository from '@modules/users/infra/typeorm/repositories/UserTokensRepository';
 
+import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
+import NotificationsRepository from '@modules/notifications/infra/typeorm/repositories/NotificationsRepository';
+
 import IBusinessRepository from '@modules/businesses/repositories/IBusinessRepository';
 import BusinessRepository from '@modules/businesses/infra/typeorm/repositories/BusinessRepository';
 
-import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
-import NotificationsRepository from '@modules/notifications/infra/typeorm/repositories/NotificationsRepository';
+import IBusinessClientRepository from '@modules/businesses/repositories/IBusinessClientRepository';
+import BusinessClientRepository from '@modules/businesses/infra/typeorm/repositories/BusinessClientRepository';
+
+import ITierRepository from '@modules/businesses/repositories/ITierRepository';
+import TierRepository from '@modules/businesses/infra/typeorm/repositories/TierRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -34,3 +40,10 @@ container.registerSingleton<IBusinessRepository>(
   'BusinessRepository',
   BusinessRepository,
 );
+
+container.registerSingleton<IBusinessClientRepository>(
+  'BusinessClientRepository',
+  BusinessClientRepository,
+);
+
+container.registerSingleton<ITierRepository>('TierRepository', TierRepository);

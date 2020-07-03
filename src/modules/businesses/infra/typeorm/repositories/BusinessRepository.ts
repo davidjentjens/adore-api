@@ -1,6 +1,6 @@
 import { getRepository, Repository } from 'typeorm';
 
-import ICreateBusinessDTO from '@modules/businesses/dtos/ICreateBusinessDTO';
+import IBusinessDTO from '@modules/businesses/dtos/IBusinessDTO';
 import IBusinessRepository from '../../../repositories/IBusinessRepository';
 
 import Business from '../entities/Business';
@@ -14,14 +14,18 @@ class BusinessRepository implements IBusinessRepository {
 
   public async create({
     name,
+    type,
+    desc,
     owner_id,
     latitude,
     longitude,
     email,
     whatsapp,
-  }: ICreateBusinessDTO): Promise<Business> {
+  }: IBusinessDTO): Promise<Business> {
     const business = this.ormRepository.create({
       name,
+      type,
+      desc,
       owner_id,
       latitude,
       longitude,
@@ -54,6 +58,12 @@ class BusinessRepository implements IBusinessRepository {
 
   public async findAll(): Promise<Business[]> {
     const findBusinesses = await this.ormRepository.find();
+
+    return findBusinesses;
+  }
+
+  public async findByType(type: string): Promise<Business[]> {
+    const findBusinesses = await this.ormRepository.find({ where: { type } });
 
     return findBusinesses;
   }

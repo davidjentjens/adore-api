@@ -1,10 +1,11 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class CreateBusiness1593460051063 implements MigrationInterface {
+export default class CreateBusinessClient1593690656868
+  implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'business',
+        name: 'business_client',
         columns: [
           {
             name: 'id',
@@ -14,39 +15,16 @@ export default class CreateBusiness1593460051063 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'name',
-            type: 'varchar',
-            isUnique: true,
-          },
-          {
-            name: 'desc',
-            type: 'varchar',
-          },
-          {
-            name: 'email',
-            type: 'varchar',
-          },
-          {
-            name: 'owner_id',
+            name: 'business_id',
             type: 'uuid',
           },
           {
-            name: 'type',
-            type: 'varchar',
+            name: 'client_id',
+            type: 'uuid',
           },
           {
-            name: 'latitude',
-            type: 'decimal',
-            scale: 7,
-          },
-          {
-            name: 'longitude',
-            type: 'decimal',
-            scale: 7,
-          },
-          {
-            name: 'whatsapp',
-            type: 'varchar',
+            name: 'tier_id',
+            type: 'uuid',
           },
           {
             name: 'created_at',
@@ -61,10 +39,26 @@ export default class CreateBusiness1593460051063 implements MigrationInterface {
         ],
         foreignKeys: [
           {
-            name: 'BusinessOwner',
+            name: 'Business',
+            referencedTableName: 'business',
+            referencedColumnNames: ['id'],
+            columnNames: ['business_id'],
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+          },
+          {
+            name: 'Client',
             referencedTableName: 'users',
             referencedColumnNames: ['id'],
-            columnNames: ['owner_id'],
+            columnNames: ['client_id'],
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+          },
+          {
+            name: 'Tier',
+            referencedTableName: 'tier',
+            referencedColumnNames: ['id'],
+            columnNames: ['tier_id'],
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
           },
@@ -74,6 +68,6 @@ export default class CreateBusiness1593460051063 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('business');
+    await queryRunner.dropTable('business_client');
   }
 }

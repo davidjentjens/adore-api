@@ -5,14 +5,7 @@ import AppError from '@shared/errors/AppError';
 import Business from '@modules/businesses/infra/typeorm/entities/Business';
 import IBusinessRepository from '@modules/businesses/repositories/IBusinessRepository';
 
-interface IRequest {
-  owner_id: string;
-  name: string;
-  latitude: number;
-  longitude: number;
-  email?: string;
-  whatsapp?: string;
-}
+import IRequest from '@modules/businesses/dtos/IBusinessDTO';
 
 @injectable()
 class CreateBusinessService {
@@ -23,21 +16,27 @@ class CreateBusinessService {
 
   public async execute({
     owner_id,
+    type,
     name,
+    desc,
     latitude,
     longitude,
     email,
     whatsapp,
   }: IRequest): Promise<Business> {
-    const findBusiness = await this.businessRepository.findByName(name);
+    const findBusinessWithSameName = await this.businessRepository.findByName(
+      name,
+    );
 
-    if (findBusiness) {
+    if (findBusinessWithSameName) {
       throw new AppError('A business by this name already exists');
     }
 
     const business = await this.businessRepository.create({
       owner_id,
+      type,
       name,
+      desc,
       latitude,
       longitude,
       email,

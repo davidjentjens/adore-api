@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class CreateBusiness1593460051063 implements MigrationInterface {
+export default class CreateTier1593698743003 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'business',
+        name: 'tier',
         columns: [
           {
             name: 'id',
@@ -14,39 +14,26 @@ export default class CreateBusiness1593460051063 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
+            name: 'rank',
+            type: 'int',
+          },
+          {
             name: 'name',
             type: 'varchar',
-            isUnique: true,
           },
           {
             name: 'desc',
             type: 'varchar',
           },
           {
-            name: 'email',
-            type: 'varchar',
-          },
-          {
-            name: 'owner_id',
+            name: 'business_id',
             type: 'uuid',
           },
           {
-            name: 'type',
-            type: 'varchar',
-          },
-          {
-            name: 'latitude',
+            name: 'value',
             type: 'decimal',
-            scale: 7,
-          },
-          {
-            name: 'longitude',
-            type: 'decimal',
-            scale: 7,
-          },
-          {
-            name: 'whatsapp',
-            type: 'varchar',
+            precision: 5,
+            scale: 2,
           },
           {
             name: 'created_at',
@@ -61,10 +48,10 @@ export default class CreateBusiness1593460051063 implements MigrationInterface {
         ],
         foreignKeys: [
           {
-            name: 'BusinessOwner',
-            referencedTableName: 'users',
+            name: 'Business',
+            referencedTableName: 'business',
             referencedColumnNames: ['id'],
-            columnNames: ['owner_id'],
+            columnNames: ['business_id'],
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
           },
@@ -74,6 +61,6 @@ export default class CreateBusiness1593460051063 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('business');
+    await queryRunner.dropTable('tier');
   }
 }
