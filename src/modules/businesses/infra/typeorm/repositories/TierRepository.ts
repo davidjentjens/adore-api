@@ -18,6 +18,7 @@ class TierRepository implements ITierRepository {
     desc,
     rank,
     value,
+    image_url,
   }: ITierDTO): Promise<Tier> {
     const tier = await this.ormRepository.create({
       business_id,
@@ -25,6 +26,7 @@ class TierRepository implements ITierRepository {
       desc,
       rank,
       value,
+      image_url,
     });
 
     await this.ormRepository.save(tier);

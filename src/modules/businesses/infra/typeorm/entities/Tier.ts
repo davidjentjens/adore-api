@@ -29,6 +29,9 @@ class Tier {
   desc: string;
 
   @Column()
+  image_url: string;
+
+  @Column()
   rank: number;
 
   @Column({ type: 'decimal', scale: 2 })

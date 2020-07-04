@@ -10,7 +10,10 @@ const tierRouter = Router();
 const tierController = new TierController();
 
 // List
-tierRouter.get('/:id', tierController.listByBusiness);
+tierRouter.get('/business/:id', tierController.listByBusiness);
+
+// Find
+tierRouter.get('/:id', tierController.find);
 
 // Create
 tierRouter.post(
@@ -23,6 +26,7 @@ tierRouter.post(
       desc: Joi.string().required(),
       value: Joi.number().required(),
       rank: Joi.number().required(),
+      image_url: Joi.string().required(),
     },
   }),
   tierController.create,
