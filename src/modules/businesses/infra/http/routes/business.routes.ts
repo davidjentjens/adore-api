@@ -9,13 +9,13 @@ const businessRouter = Router();
 
 const businessController = new BusinessController();
 
-// Find
-businessRouter.get('/:id', businessController.find);
-
 // List
 businessRouter.get('/', businessController.findAll);
 businessRouter.get('/featured', businessController.findAllFeatured);
 businessRouter.post('/type', businessController.findByType);
+
+// Find
+businessRouter.get('/:id', businessController.find);
 
 // Create
 businessRouter.post(
@@ -31,7 +31,7 @@ businessRouter.post(
       image_url: Joi.string().required(),
       whatsapp: Joi.string().required(),
       category_id: Joi.string().required(),
-      featured: Joi.boolean().required(),
+      featured: Joi.required(),
     },
   }),
   businessController.create,

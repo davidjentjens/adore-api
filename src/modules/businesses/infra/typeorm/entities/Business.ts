@@ -35,7 +35,7 @@ class Business {
   @Column()
   image_url: string;
 
-  @Column()
+  @Column('bool')
   featured: boolean;
 
   @Column()

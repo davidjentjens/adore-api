@@ -35,10 +35,6 @@ export default class CreateBusiness1593460051063 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'featured',
-            type: 'boolean',
-          },
-          {
             name: 'image_url',
             type: 'varchar',
           },

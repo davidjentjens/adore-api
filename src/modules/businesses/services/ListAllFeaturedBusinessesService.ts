@@ -10,7 +10,7 @@ class ListAllFeaturedBusinessesService {
     private businessRepository: IBusinessRepository,
   ) {}
 
-  public async execute(): Promise<Business[] | undefined> {
+  public async execute(): Promise<Business[]> {
     const featuredBusinesses = await this.businessRepository.findAllFeatured();
 
     return featuredBusinesses;
