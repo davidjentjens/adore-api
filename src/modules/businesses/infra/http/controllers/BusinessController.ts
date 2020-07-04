@@ -3,13 +3,24 @@ import { container } from 'tsyringe';
 
 import CreateBusinessService from '@modules/businesses/services/CreateBusinessService';
 import ListAllBusinessesService from '@modules/businesses/services/ListAllBusinessesService';
+import ListAllFeaturedBusinessesService from '@modules/businesses/services/ListAllFeaturedBusinessesService';
 import ListBusinessesByType from '@modules/businesses/services/ListBusinessesByType';
 import SubscribeToBusinessService from '@modules/businesses/services/SubscribeToBusinessService';
 
 export default class BusinessController {
   public async create(req: Request, res: Response): Promise<Response> {
     const { id: owner_id } = req.user;
-    const { name, desc, latitude, longitude, email, whatsapp, type } = req.body;
+    const {
+      name,
+      desc,
+      latitude,
+      longitude,
+      image_url,
+      featured,
+      email,
+      whatsapp,
+      category_id,
+    } = req.body;
 
     const createBusiness = container.resolve(CreateBusinessService);
 
@@ -19,9 +30,11 @@ export default class BusinessController {
       desc,
       latitude,
       longitude,
+      image_url,
+      featured,
       email,
       whatsapp,
-      type,
+      category_id,
     });
 
     return res.json(business);
@@ -33,6 +46,16 @@ export default class BusinessController {
     const foundBusinesses = await findAllBusinesses.execute();
 
     return res.json(foundBusinesses);
+  }
+
+  public async findAllFeatured(req: Request, res: Response): Promise<Response> {
+    const findAllFeaturedBusinesses = container.resolve(
+      ListAllFeaturedBusinessesService,
+    );
+
+    const foundFeaturedBusinesses = await findAllFeaturedBusinesses.execute();
+
+    return res.json(foundFeaturedBusinesses);
   }
 
   public async findByType(req: Request, res: Response): Promise<Response> {

@@ -1,9 +1,6 @@
 import Category from '../infra/typeorm/entities/Category';
 
-interface ICategory {
-  name: string;
-  image_url: string;
-}
+import ICategory from '../dtos/ICategoryDTO';
 
 export default interface IBusinessClientRepository {
   create(data: ICategory): Promise<Category>;

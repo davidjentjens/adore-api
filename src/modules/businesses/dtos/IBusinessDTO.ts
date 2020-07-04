@@ -1,17 +1,12 @@
 export default interface ICreateBusinessDTO {
   owner_id: string;
-  type:
-    | 'Cervejaria'
-    | 'Hamburgueria'
-    | 'Pizzaria'
-    | 'Gelateria'
-    | 'Padaria'
-    | 'Queijaria'
-    | 'Cafeteria';
+  category_id: string;
   name: string;
   desc: string;
   latitude: number;
   longitude: number;
+  image_url: string;
+  featured: boolean;
   email?: string;
   whatsapp?: string;
 }

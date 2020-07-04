@@ -11,6 +11,7 @@ const businessController = new BusinessController();
 
 // List
 businessRouter.get('/', businessController.findAll);
+businessRouter.get('/featured', businessController.findAllFeatured);
 businessRouter.post('/type', businessController.findByType);
 
 // Create
@@ -24,8 +25,10 @@ businessRouter.post(
       latitude: Joi.number().required(),
       longitude: Joi.number().required(),
       email: Joi.string().email().required(),
+      image_url: Joi.string().required(),
       whatsapp: Joi.string().required(),
-      type: Joi.string().required(),
+      category_id: Joi.string().required(),
+      featured: Joi.boolean().required(),
     },
   }),
   businessController.create,

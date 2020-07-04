@@ -16,11 +16,13 @@ class CreateBusinessService {
 
   public async execute({
     owner_id,
-    type,
+    category_id,
     name,
     desc,
     latitude,
     longitude,
+    image_url,
+    featured,
     email,
     whatsapp,
   }: IRequest): Promise<Business> {
@@ -34,11 +36,13 @@ class CreateBusinessService {
 
     const business = await this.businessRepository.create({
       owner_id,
-      type,
+      category_id,
       name,
       desc,
       latitude,
       longitude,
+      image_url,
+      featured,
       email,
       whatsapp,
     });

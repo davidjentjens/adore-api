@@ -14,21 +14,25 @@ class BusinessRepository implements IBusinessRepository {
 
   public async create({
     name,
-    type,
+    category_id,
     desc,
     owner_id,
     latitude,
     longitude,
+    image_url,
+    featured,
     email,
     whatsapp,
   }: IBusinessDTO): Promise<Business> {
     const business = this.ormRepository.create({
       name,
-      type,
+      category_id,
       desc,
       owner_id,
       latitude,
       longitude,
+      image_url,
+      featured,
       email,
       whatsapp,
     });
@@ -66,6 +70,14 @@ class BusinessRepository implements IBusinessRepository {
     const findBusinesses = await this.ormRepository.find({ where: { type } });
 
     return findBusinesses;
+  }
+
+  public async findAllFeatured(): Promise<Business[]> {
+    const findFeaturedBusinesses = await this.ormRepository.find({
+      where: { featured: true },
+    });
+
+    return findFeaturedBusinesses;
   }
 
   public async save(business: Business): Promise<Business> {
