@@ -3,6 +3,8 @@ import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 
 import Tier from '@modules/businesses/infra/typeorm/entities/Tier';
+
+import IBusinessRepository from '@modules/businesses/repositories/IBusinessRepository';
 import ITierRepository from '@modules/businesses/repositories/ITierRepository';
 
 import IRequest from '@modules/businesses/dtos/ITierDTO';
@@ -10,18 +12,34 @@ import IRequest from '@modules/businesses/dtos/ITierDTO';
 @injectable()
 class CreateTierService {
   constructor(
+    @inject('BusinessRepository')
+    private businessRepository: IBusinessRepository,
+
     @inject('TierRepository')
     private tierRepository: ITierRepository,
   ) {}
 
   // TODO: Fix ranking logic
   public async execute({
+    owner_id,
     rank,
     business_id,
     name,
     desc,
     value,
   }: IRequest): Promise<Tier> {
+    const findBusiness = await this.businessRepository.find(business_id);
+
+    if (!findBusiness) {
+      throw new AppError('Business does not exist', 404);
+    }
+
+    if (findBusiness.owner_id !== owner_id) {
+      throw new AppError(
+        'Only the owner of the business can create tiers for their service',
+      );
+    }
+
     const findTierWithSameName = await this.tierRepository.findByName(name);
 
     if (findTierWithSameName) {
