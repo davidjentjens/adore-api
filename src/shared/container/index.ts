@@ -21,6 +21,9 @@ import BusinessClientRepository from '@modules/businesses/infra/typeorm/reposito
 import ITierRepository from '@modules/businesses/repositories/ITierRepository';
 import TierRepository from '@modules/businesses/infra/typeorm/repositories/TierRepository';
 
+import ICategoriesRepository from '@modules/businesses/repositories/ICategoriesRepository';
+import CategoriesRepository from '@modules/businesses/infra/typeorm/repositories/CategoriesRepository';
+
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
@@ -47,3 +50,8 @@ container.registerSingleton<IBusinessClientRepository>(
 );
 
 container.registerSingleton<ITierRepository>('TierRepository', TierRepository);
+
+container.registerSingleton<ICategoriesRepository>(
+  'CategoriesRepository',
+  CategoriesRepository,
+);

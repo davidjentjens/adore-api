@@ -7,6 +7,7 @@ import profileRouter from '@modules/users/infra/http/routes/profile.routes';
 import businessRouter from '@modules/businesses/infra/http/routes/business.routes';
 import subscriptionsRouter from '@modules/businesses/infra/http/routes/subscriptions.routes';
 import tierRouter from '@modules/businesses/infra/http/routes/tiers.routes';
+import categoriesRouter from '@modules/businesses/infra/http/routes/category.routes';
 
 const routes = Router();
 
@@ -18,5 +19,6 @@ routes.use('/profile', profileRouter);
 routes.use('/business', businessRouter);
 routes.use('/subscriptions', subscriptionsRouter);
 routes.use('/tiers', tierRouter);
+routes.use('/categories', categoriesRouter);
 
 export default routes;
