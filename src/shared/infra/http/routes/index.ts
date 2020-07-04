@@ -8,6 +8,7 @@ import businessRouter from '@modules/businesses/infra/http/routes/business.route
 import subscriptionsRouter from '@modules/businesses/infra/http/routes/subscriptions.routes';
 import tierRouter from '@modules/businesses/infra/http/routes/tiers.routes';
 import categoriesRouter from '@modules/businesses/infra/http/routes/category.routes';
+import postsRouter from '@modules/businesses/infra/http/routes/posts.routes';
 
 const routes = Router();
 
@@ -20,5 +21,6 @@ routes.use('/business', businessRouter);
 routes.use('/subscriptions', subscriptionsRouter);
 routes.use('/tiers', tierRouter);
 routes.use('/categories', categoriesRouter);
+routes.use('/posts', postsRouter);
 
 export default routes;
