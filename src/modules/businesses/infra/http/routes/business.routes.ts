@@ -9,6 +9,9 @@ const businessRouter = Router();
 
 const businessController = new BusinessController();
 
+// Find
+businessRouter.get('/:id', businessController.find);
+
 // List
 businessRouter.get('/', businessController.findAll);
 businessRouter.get('/featured', businessController.findAllFeatured);
