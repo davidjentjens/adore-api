@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 
 import User from '@modules/users/infra/typeorm/entities/User';
+import Category from '@modules/businesses/infra/typeorm/entities/Category';
 
 @Entity('business')
 class Business {
@@ -16,7 +17,11 @@ class Business {
   id: string;
 
   @Column()
-  type: string;
+  category_id: string;
+
+  @ManyToOne(() => Category)
+  @JoinColumn({ name: 'category_id' })
+  category: Category;
 
   @Column()
   name: string;
@@ -26,6 +31,12 @@ class Business {
 
   @Column()
   email: string;
+
+  @Column()
+  image_url: string;
+
+  @Column()
+  featured: boolean;
 
   @Column()
   owner_id: string;

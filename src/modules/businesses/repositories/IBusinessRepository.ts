@@ -7,7 +7,8 @@ export default interface IBusinessRepository {
   find(business_id: string): Promise<Business | undefined>;
   findByName(business_name: string): Promise<Business | undefined>;
   findAll(): Promise<Business[]>;
-  findByType(type: string): Promise<Business[]>;
+  findByType(category_id: string): Promise<Business[]>;
+  findAllFeatured(): Promise<Business[]>;
   save(business: Business): Promise<Business>;
   delete(business: Business): Promise<void>;
 }

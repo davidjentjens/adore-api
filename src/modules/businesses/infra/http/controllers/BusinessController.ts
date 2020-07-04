@@ -3,13 +3,24 @@ import { container } from 'tsyringe';
 
 import CreateBusinessService from '@modules/businesses/services/CreateBusinessService';
 import ListAllBusinessesService from '@modules/businesses/services/ListAllBusinessesService';
+import ListAllFeaturedBusinessesService from '@modules/businesses/services/ListAllFeaturedBusinessesService';
 import ListBusinessesByType from '@modules/businesses/services/ListBusinessesByType';
-import SubscribeToBusinessService from '@modules/businesses/services/SubscribeToBusinessService';
+import DeleteBusinessService from '@modules/businesses/services/DeleteBusinessService';
 
 export default class BusinessController {
   public async create(req: Request, res: Response): Promise<Response> {
     const { id: owner_id } = req.user;
-    const { name, desc, latitude, longitude, email, whatsapp, type } = req.body;
+    const {
+      name,
+      desc,
+      latitude,
+      longitude,
+      image_url,
+      featured,
+      email,
+      whatsapp,
+      category_id,
+    } = req.body;
 
     const createBusiness = container.resolve(CreateBusinessService);
 
@@ -19,9 +30,11 @@ export default class BusinessController {
       desc,
       latitude,
       longitude,
+      image_url,
+      featured,
       email,
       whatsapp,
-      type,
+      category_id,
     });
 
     return res.json(business);
@@ -35,26 +48,35 @@ export default class BusinessController {
     return res.json(foundBusinesses);
   }
 
+  public async findAllFeatured(req: Request, res: Response): Promise<Response> {
+    const findAllFeaturedBusinesses = container.resolve(
+      ListAllFeaturedBusinessesService,
+    );
+
+    const foundFeaturedBusinesses = await findAllFeaturedBusinesses.execute();
+
+    return res.json(foundFeaturedBusinesses);
+  }
+
   public async findByType(req: Request, res: Response): Promise<Response> {
-    const { type } = req.body;
+    const { category_id } = req.body;
 
     const findBusinessesByType = container.resolve(ListBusinessesByType);
 
-    const foundBusinesses = await findBusinessesByType.execute({ type });
+    const foundBusinesses = await findBusinessesByType.execute({ category_id });
 
     return res.json(foundBusinesses);
   }
 
-  public async subscribe(req: Request, res: Response): Promise<Response> {
-    const { id: client_id } = req.user;
-    const { business_id, tier_id } = req.body;
+  public async delete(req: Request, res: Response): Promise<Response> {
+    const { id: owner_id } = req.user;
+    const { id: business_id } = req.params;
 
-    const subscribeToBusiness = container.resolve(SubscribeToBusinessService);
+    const deleteBusiness = container.resolve(DeleteBusinessService);
 
-    const business = await subscribeToBusiness.execute({
-      client_id,
+    const business = await deleteBusiness.execute({
+      owner_id,
       business_id,
-      tier_id,
     });
 
     return res.json(business);
