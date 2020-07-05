@@ -27,6 +27,9 @@ import CategoriesRepository from '@modules/businesses/infra/typeorm/repositories
 import IBusinessPostsRepository from '@modules/businesses/repositories/IBusinessPostsRepository';
 import BusinessPostsRepository from '@modules/businesses/infra/typeorm/repositories/BusinessPostRepository';
 
+import ILikesRepository from '@modules/businesses/repositories/ILikesRepository';
+import LikesRepository from '@modules/businesses/infra/typeorm/repositories/LikesRepository';
+
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
@@ -62,4 +65,9 @@ container.registerSingleton<ICategoriesRepository>(
 container.registerSingleton<IBusinessPostsRepository>(
   'BusinessPostsRepository',
   BusinessPostsRepository,
+);
+
+container.registerSingleton<ILikesRepository>(
+  'LikesRepository',
+  LikesRepository,
 );
