@@ -42,7 +42,13 @@ class BusinessPostRepository implements IBusinessPostsRepository {
     return findBusinessPost;
   }
 
-  public async findAll(business_id: string): Promise<BusinessPost[]> {
+  public async findAll(): Promise<BusinessPost[]> {
+    const findBusinessPosts = await this.ormRepository.find();
+
+    return findBusinessPosts;
+  }
+
+  public async findAllInBusiness(business_id: string): Promise<BusinessPost[]> {
     const findBusinessPosts = await this.ormRepository.find({
       where: { business_id },
     });

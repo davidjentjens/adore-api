@@ -3,6 +3,7 @@ import { container } from 'tsyringe';
 
 import CreateBusinessPostService from '@modules/businesses/services/CreateBusinessPostService';
 import ListBusinessPostsService from '@modules/businesses/services/ListBusinessPostsService';
+import ListBusinessPostsByBusinessService from '@modules/businesses/services/ListBusinessPostsByBusinessService';
 import DeleteBusinessPostService from '@modules/businesses/services/DeleteBusinessPostService';
 
 export default class BusinessController {
@@ -25,9 +26,22 @@ export default class BusinessController {
   }
 
   public async findAll(req: Request, res: Response): Promise<Response> {
+    const findAllBusinessPosts = container.resolve(ListBusinessPostsService);
+
+    const foundBusinessPosts = await findAllBusinessPosts.execute();
+
+    return res.json(foundBusinessPosts);
+  }
+
+  public async findAllInBusiness(
+    req: Request,
+    res: Response,
+  ): Promise<Response> {
     const { id: business_id } = req.params;
 
-    const findAllBusinessPosts = container.resolve(ListBusinessPostsService);
+    const findAllBusinessPosts = container.resolve(
+      ListBusinessPostsByBusinessService,
+    );
 
     const foundBusinessPosts = await findAllBusinessPosts.execute({
       business_id,

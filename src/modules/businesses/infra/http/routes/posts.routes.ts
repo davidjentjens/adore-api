@@ -10,7 +10,8 @@ const postRouter = Router();
 const businessPostController = new BusinessPostController();
 
 // List
-postRouter.get('/:id', businessPostController.findAll);
+postRouter.get('/', businessPostController.findAll);
+postRouter.get('/:id', businessPostController.findAllInBusiness);
 
 // Create
 postRouter.post(
