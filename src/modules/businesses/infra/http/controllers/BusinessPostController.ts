@@ -27,11 +27,13 @@ export default class BusinessController {
   }
 
   public async find(req: Request, res: Response): Promise<Response> {
+    const { id: client_id } = req.user;
     const { id: business_post_id } = req.params;
 
     const findBusinessPost = container.resolve(FindBusinessPostService);
 
     const foundBusinessPost = await findBusinessPost.execute({
+      client_id,
       business_post_id,
     });
 

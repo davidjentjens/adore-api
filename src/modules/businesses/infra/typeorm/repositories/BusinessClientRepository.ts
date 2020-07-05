@@ -58,7 +58,7 @@ class BusinessClientRepository implements IBusinessClientRepository {
         client_id,
       })
       .leftJoinAndSelect('business_client.business', 'business')
-      .leftJoinAndSelect('business_client.client', 'users')
+      .leftJoinAndSelect('business_client.tier', 'tier')
       .getMany();
 
     return findSubscription[0] ? findSubscription[0] : undefined;
@@ -71,7 +71,7 @@ class BusinessClientRepository implements IBusinessClientRepository {
         client_id,
       })
       .leftJoinAndSelect('business_client.business', 'business')
-      .leftJoinAndSelect('business_client.client', 'users')
+      .leftJoinAndSelect('business_client.tier', 'tier')
       .getMany();
   }
 

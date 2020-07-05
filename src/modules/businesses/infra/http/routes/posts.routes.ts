@@ -14,7 +14,7 @@ postRouter.get('/', ensureAuthenticated, businessPostController.findAll);
 postRouter.get('/business/:id', businessPostController.findAllInBusiness);
 
 // Find
-postRouter.get('/:id', businessPostController.find);
+postRouter.get('/:id', ensureAuthenticated, businessPostController.find);
 
 // Create
 postRouter.post(
