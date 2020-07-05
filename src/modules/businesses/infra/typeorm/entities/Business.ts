@@ -36,6 +36,9 @@ class Business {
   logo_url: string;
 
   @Column()
+  zone: string;
+
+  @Column()
   image_url: string;
 
   @Column('bool')
