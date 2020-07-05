@@ -35,23 +35,30 @@ class BusinessPostRepository implements IBusinessPostsRepository {
   public async find(
     business_post_id: string,
   ): Promise<BusinessPost | undefined> {
-    const findBusinessPost = await this.ormRepository.findOne({
-      where: { id: business_post_id },
-    });
+    const findBusinessPost = await this.ormRepository
+      .createQueryBuilder('business_post')
+      .where({ id: business_post_id })
+      .leftJoinAndSelect('business_post.business', 'business')
+      .getMany();
 
-    return findBusinessPost;
+    return findBusinessPost[0] ? findBusinessPost[0] : undefined;
   }
 
   public async findAll(): Promise<BusinessPost[]> {
-    const findBusinessPosts = await this.ormRepository.find();
+    const findBusinessPosts = await this.ormRepository
+      .createQueryBuilder('business_post')
+      .leftJoinAndSelect('business_post.business', 'business')
+      .getMany();
 
     return findBusinessPosts;
   }
 
   public async findAllInBusiness(business_id: string): Promise<BusinessPost[]> {
-    const findBusinessPosts = await this.ormRepository.find({
-      where: { business_id },
-    });
+    const findBusinessPosts = await this.ormRepository
+      .createQueryBuilder('business_post')
+      .where({ business_id })
+      .leftJoinAndSelect('business_post.business', 'business')
+      .getMany();
 
     return findBusinessPosts;
   }
