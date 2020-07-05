@@ -25,6 +25,7 @@ businessRouter.post(
     [Segments.BODY]: {
       name: Joi.string().required(),
       desc: Joi.string().required(),
+      logo_url: Joi.string().required(),
       latitude: Joi.number().required(),
       longitude: Joi.number().required(),
       email: Joi.string().email().required(),

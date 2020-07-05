@@ -33,6 +33,9 @@ class Business {
   email: string;
 
   @Column()
+  logo_url: string;
+
+  @Column()
   image_url: string;
 
   @Column('bool')

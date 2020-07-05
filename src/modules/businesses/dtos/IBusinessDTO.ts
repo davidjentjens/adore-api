@@ -3,6 +3,7 @@ export default interface ICreateBusinessDTO {
   category_id: string;
   name: string;
   desc: string;
+  logo_url: string;
   latitude: number;
   longitude: number;
   image_url: string;

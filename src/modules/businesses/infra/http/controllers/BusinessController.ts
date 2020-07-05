@@ -14,6 +14,7 @@ export default class BusinessController {
     const {
       name,
       desc,
+      logo_url,
       latitude,
       longitude,
       image_url,
@@ -29,6 +30,7 @@ export default class BusinessController {
       owner_id,
       name,
       desc,
+      logo_url,
       latitude,
       longitude,
       image_url,
