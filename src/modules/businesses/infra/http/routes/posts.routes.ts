@@ -10,7 +10,7 @@ const postRouter = Router();
 const businessPostController = new BusinessPostController();
 
 // List
-postRouter.get('/', businessPostController.findAll);
+postRouter.get('/', ensureAuthenticated, businessPostController.findAll);
 postRouter.get('/business/:id', businessPostController.findAllInBusiness);
 
 // Find

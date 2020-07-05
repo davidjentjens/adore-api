@@ -39,9 +39,12 @@ export default class BusinessController {
   }
 
   public async findAll(req: Request, res: Response): Promise<Response> {
+    const { id: client_id } = req.user;
     const findAllBusinessPosts = container.resolve(ListBusinessPostsService);
 
-    const foundBusinessPosts = await findAllBusinessPosts.execute();
+    const foundBusinessPosts = await findAllBusinessPosts.execute({
+      client_id,
+    });
 
     return res.json(foundBusinessPosts);
   }
