@@ -10,6 +10,7 @@ import tierRouter from '@modules/businesses/infra/http/routes/tiers.routes';
 import categoriesRouter from '@modules/businesses/infra/http/routes/category.routes';
 import postsRouter from '@modules/businesses/infra/http/routes/posts.routes';
 import likesRouter from '@modules/businesses/infra/http/routes/likes.routes';
+import perksRouter from '@modules/businesses/infra/http/routes/perks.routes';
 
 const routes = Router();
 
@@ -24,5 +25,6 @@ routes.use('/tiers', tierRouter);
 routes.use('/categories', categoriesRouter);
 routes.use('/posts', postsRouter);
 routes.use('/likes', likesRouter);
+routes.use('/perks', perksRouter);
 
 export default routes;

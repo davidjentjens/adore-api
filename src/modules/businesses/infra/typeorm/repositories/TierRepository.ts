@@ -35,13 +35,13 @@ class TierRepository implements ITierRepository {
   }
 
   public async find(tier_id: string): Promise<Tier | undefined> {
-    const tier = this.ormRepository.findOne({
-      where: {
-        id: tier_id,
-      },
-    });
+    const tier = await this.ormRepository
+      .createQueryBuilder('tier')
+      .where({ id: tier_id })
+      .leftJoinAndSelect('tier.business', 'business')
+      .getMany();
 
-    return tier;
+    return tier[0] ? tier[0] : undefined;
   }
 
   public async findByName(name: string): Promise<Tier | undefined> {
