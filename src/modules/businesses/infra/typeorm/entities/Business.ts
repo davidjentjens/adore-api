@@ -27,6 +27,9 @@ class Business {
   name: string;
 
   @Column()
+  subtitle: string;
+
+  @Column()
   desc: string;
 
   @Column()
@@ -34,6 +37,9 @@ class Business {
 
   @Column()
   logo_url: string;
+
+  @Column()
+  members: number;
 
   @Column()
   zone: string;
