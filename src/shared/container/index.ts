@@ -30,6 +30,9 @@ import BusinessPostsRepository from '@modules/businesses/infra/typeorm/repositor
 import ILikesRepository from '@modules/businesses/repositories/ILikesRepository';
 import LikesRepository from '@modules/businesses/infra/typeorm/repositories/LikesRepository';
 
+import IPerksRepository from '@modules/businesses/repositories/IPerksRepository';
+import PerksRepository from '@modules/businesses/infra/typeorm/repositories/PerksRepository';
+
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
@@ -70,4 +73,9 @@ container.registerSingleton<IBusinessPostsRepository>(
 container.registerSingleton<ILikesRepository>(
   'LikesRepository',
   LikesRepository,
+);
+
+container.registerSingleton<IPerksRepository>(
+  'PerksRepository',
+  PerksRepository,
 );
