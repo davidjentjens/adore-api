@@ -51,20 +51,28 @@ class BusinessClientRepository implements IBusinessClientRepository {
     business_id,
     client_id,
   }: IBusinessClientDTO): Promise<BusinessClient | undefined> {
-    return this.ormRepository.findOne({
-      where: {
+    const findSubscription = await this.ormRepository
+      .createQueryBuilder('business_client')
+      .where({
         business_id,
         client_id,
-      },
-    });
+      })
+      .leftJoinAndSelect('business_client.business', 'business')
+      .leftJoinAndSelect('business_client.client', 'users')
+      .getMany();
+
+    return findSubscription[0] ? findSubscription[0] : undefined;
   }
 
   public async findSubscribed(client_id: string): Promise<BusinessClient[]> {
-    return this.ormRepository.find({
-      where: {
+    return this.ormRepository
+      .createQueryBuilder('business_client')
+      .where({
         client_id,
-      },
-    });
+      })
+      .leftJoinAndSelect('business_client.business', 'business')
+      .leftJoinAndSelect('business_client.client', 'users')
+      .getMany();
   }
 
   public async save(businessClient: BusinessClient): Promise<BusinessClient> {
