@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 
 import CreateTierService from '@modules/businesses/services/CreateTierService';
 import ListTiersByBusiness from '@modules/businesses/services/ListTiersByBusiness';
-import FindTierService from 'modules/businesses/services/FindTierService';
+import FindTierService from '@modules/businesses/services/FindTierService';
 
 export default class BusinessController {
   public async create(req: Request, res: Response): Promise<Response> {
