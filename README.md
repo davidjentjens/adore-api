@@ -1,11 +1,3 @@
-# API Template
-
-An api with a predefined architecture, along with a pre-coded user and notifications module. Also has a functioning cache provider.
-
-<h3 align="center">
-  Adorê Mobile
-</h3>
-
 <p align="center">
   <img width="460"src="https://i.imgur.com/dReqofl.png">
   <br>
@@ -16,12 +8,19 @@ An api with a predefined architecture, along with a pre-coded user and notificat
   </h1>
 </p>
 
-## Developed by
+<p align="center">
+<p>Estrutura do banco de dados:</p>
+<img width="560"src="https://i.imgur.com/ZSos3Iv.png">
+</p>
+
+## Desenvolvido por
 
 [David Jentjens](https://github.com/davidjentjens)
 
 [Frederico Lacis](https://github.com/fredlacis)
 
 [Lucas Frazão](https://github.com/frazaolucas79)
+
+## Links
 
 [Front-End](https://github.com/davidjentjens/adore-mobile)
