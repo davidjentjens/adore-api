@@ -6,10 +6,11 @@
   <h1>
     Mega Hack 3
   </h1>
+  <p>O repositório oficial da API do aplicativo Adorê, desenvolvido durante o Mega Hack 3.0 da Shawee.</p>
 </p>
 
+## Estrutura do banco de dados
 <p align="center">
-<p>Estrutura do banco de dados:</p>
 <img width="560"src="https://i.imgur.com/ZSos3Iv.png">
 </p>
 
