@@ -2,17 +2,26 @@
 
 An api with a predefined architecture, along with a pre-coded user and notifications module. Also has a functioning cache provider.
 
+<h3 align="center">
+  Adorê Mobile
+</h3>
 
-## Instructions
+<p align="center">
+  <img width="460"src="https://i.imgur.com/dReqofl.png">
+  <br>
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-%2304D361">
+  <br>
+  <h1>
+    Mega Hack 3
+  </h1>
+</p>
 
-1. Inside package.json, rename PROJECT_NAME to the name of you project.
+## Developed by
 
-2. Inside ormconfig.json, rename PG_DATABASE_NAME to the name of your postgres database, and MONGO_DATABASE_NAME to the name of your postgres database.
+[David Jentjens](https://github.com/davidjentjens)
 
-3. Make a copy of the .env.example file and name it .env, filling all the prospective fields that will be used.
+[Frederico Lacis](https://github.com/fredlacis)
 
-4. Run yarn in the console of the root folder, to install all dependencies.
+[Lucas Frazão](https://github.com/frazaolucas79)
 
-5. Create the postgres, mongodb and redis docker containers.
-
-6. Create the postgres and mongodb containers.
+[Front-End](https://github.com/davidjentjens/adore-mobile)
