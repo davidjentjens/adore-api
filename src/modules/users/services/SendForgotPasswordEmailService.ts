@@ -1,8 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import path from 'path';
 
-// import AppError from '@shared/errors/AppError';
-
 import AppError from '@shared/errors/AppError';
 
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
