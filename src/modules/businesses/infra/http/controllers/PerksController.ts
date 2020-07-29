@@ -9,7 +9,7 @@ import DeletePerkService from '@modules/businesses/services/DeletePerkService';
 export default class PerksController {
   public async create(req: Request, res: Response): Promise<Response> {
     const { id: client_id } = req.user;
-    const { title, desc, image_url, date, tier_id } = req.body;
+    const { title, desc, image_url, tier_id } = req.body;
 
     const createPerk = container.resolve(CreatePerkService);
 
@@ -18,7 +18,6 @@ export default class PerksController {
       title,
       desc,
       image_url,
-      date,
       tier_id,
     });
 

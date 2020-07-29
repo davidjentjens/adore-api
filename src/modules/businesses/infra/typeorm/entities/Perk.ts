@@ -24,9 +24,6 @@ class Perk {
   @Column()
   image_url: string;
 
-  @Column()
-  date: number;
-
   @ManyToOne(() => Tier)
   @JoinColumn({ name: 'tier_id' })
   tier: Tier;

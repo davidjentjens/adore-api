@@ -27,7 +27,6 @@ class CreatePerkService {
     title,
     desc,
     image_url,
-    date,
     tier_id,
   }: IRequest): Promise<Perk> {
     const findTier = await this.tierRepository.find(tier_id);
@@ -40,19 +39,10 @@ class CreatePerkService {
       throw new AppError('Only the owner of the business can create perks');
     }
 
-    const findPerkOnSameDate = await this.perksRepository.findOneWithSameDate(
-      date,
-    );
-
-    if (findPerkOnSameDate) {
-      throw new AppError('Cannot create more than one perk on the same date');
-    }
-
     const perk = await this.perksRepository.create({
       title,
       desc,
       image_url,
-      date,
       tier_id,
     });
 

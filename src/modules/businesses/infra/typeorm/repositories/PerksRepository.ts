@@ -17,14 +17,12 @@ class PerksRepository implements IPerksRepository {
     title,
     desc,
     image_url,
-    date,
     tier_id,
   }: IPerkDTO): Promise<Perk> {
     const perk = await this.ormRepository.create({
       title,
       desc,
       image_url,
-      date,
       tier_id,
     });
 
@@ -35,10 +33,6 @@ class PerksRepository implements IPerksRepository {
 
   public async find(perk_id: string): Promise<Perk | undefined> {
     return this.ormRepository.findOne({ where: { id: perk_id } });
-  }
-
-  public async findOneWithSameDate(date: number): Promise<Perk | undefined> {
-    return this.ormRepository.findOne({ where: { date } });
   }
 
   public async findByTier(tier_id: string): Promise<Perk[]> {

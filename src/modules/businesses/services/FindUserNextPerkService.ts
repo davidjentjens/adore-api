@@ -26,51 +26,58 @@ class FindUserNextPerkService {
   ) {}
 
   public async execute({ client_id }: IRequest): Promise<Perk> {
-    const subscriptions = await this.businessClientRepository.findSubscribed(
-      client_id,
-    );
+    // const subscriptions = await this.businessClientRepository.findSubscribed(
+    //   client_id,
+    // );
 
-    const tier_ids = subscriptions.map(subscription => subscription.tier_id);
+    // const tier_ids = subscriptions.map(subscription => subscription.tier_id);
 
-    const perkPromises = tier_ids.map(tier_id =>
-      this.perksRepository.findByTier(tier_id),
-    );
+    // const perkPromises = tier_ids.map(tier_id =>
+    //   this.perksRepository.findByTier(tier_id),
+    // );
 
-    const resolvedPerkLists = await Promise.all(perkPromises);
+    // const resolvedPerkLists = await Promise.all(perkPromises);
 
-    const perks = resolvedPerkLists.reduce((a, b) => {
-      return a.concat(b);
-    }, []);
+    // const perks = resolvedPerkLists.reduce((a, b) => {
+    //   return a.concat(b);
+    // }, []);
 
-    if (!perks || !perks[0]) {
-      throw new AppError('You must subscribe to a tier to get perks');
-    }
+    // if (!perks || !perks[0]) {
+    //   throw new AppError('You must subscribe to a tier to get perks');
+    // }
 
-    const currentDate = new Date();
-    const currentMonth = currentDate.getMonth();
-    const currentYear = currentDate.getFullYear();
+    // const currentDate = new Date();
+    // const currentMonth = currentDate.getMonth();
+    // const currentYear = currentDate.getFullYear();
 
-    const perkDateList = new Array<Date>();
+    // const perkDateList = new Array<Date>();
 
-    perks.forEach(perk => {
-      const perkDate = new Date(currentYear, currentMonth, perk.date, 0, 0, 0);
+    // perks.forEach(perk => {
+    //   const perkDate = new Date(currentYear, currentMonth, perk.date, 0, 0, 0);
 
-      if (isAfter(perkDate, currentDate)) {
-        perkDateList.push(perkDate);
-      }
+    //   if (isAfter(perkDate, currentDate)) {
+    //     perkDateList.push(perkDate);
+    //   }
+    // });
+
+    // const closestDateAfter = closestTo(currentDate, perkDateList);
+
+    // const closestPerk = await this.perksRepository.findOneWithSameDate(
+    //   getDate(closestDateAfter),
+    // );
+
+    // if (!closestPerk) {
+    //   throw new AppError('You must subscribe to a tier to get perks');
+    // }
+
+    const perk = await this.perksRepository.create({
+      title: 'test',
+      desc: 'description',
+      image_url: 'image_url',
+      tier_id: '123',
     });
 
-    const closestDateAfter = closestTo(currentDate, perkDateList);
-
-    const closestPerk = await this.perksRepository.findOneWithSameDate(
-      getDate(closestDateAfter),
-    );
-
-    if (!closestPerk) {
-      throw new AppError('You must subscribe to a tier to get perks');
-    }
-
-    return closestPerk;
+    return perk;
   }
 }
 

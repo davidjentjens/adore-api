@@ -25,7 +25,6 @@ perksRouter.post(
       title: Joi.string().required(),
       desc: Joi.string().required(),
       image_url: Joi.string().required(),
-      date: Joi.string().required(),
       tier_id: Joi.string().required(),
     },
   }),
