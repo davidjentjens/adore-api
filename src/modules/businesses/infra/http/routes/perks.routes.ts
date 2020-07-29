@@ -10,7 +10,6 @@ const perksRouter = Router();
 const perksController = new PerksController();
 
 // List
-perksRouter.get('/next', ensureAuthenticated, perksController.findClosest);
 perksRouter.get('/:id', perksController.findAllInTier);
 
 // Find

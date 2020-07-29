@@ -33,6 +33,12 @@ import LikesRepository from '@modules/businesses/infra/typeorm/repositories/Like
 import IPerksRepository from '@modules/businesses/repositories/IPerksRepository';
 import PerksRepository from '@modules/businesses/infra/typeorm/repositories/PerksRepository';
 
+import IDeliveryRepository from '@modules/deliveries/repositories/IDeliveryRepository';
+import DeliveryRepository from '@modules/deliveries/infra/typeorm/repositories/DeliveryRepository';
+
+import IDeliveryInstanceRepository from '@modules/deliveries/repositories/IDeliveryInstanceRepository';
+import DeliveryInstanceRepository from '@modules/deliveries/infra/typeorm/repositories/DeliveryInstanceRepository';
+
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
@@ -78,4 +84,14 @@ container.registerSingleton<ILikesRepository>(
 container.registerSingleton<IPerksRepository>(
   'PerksRepository',
   PerksRepository,
+);
+
+container.registerSingleton<IDeliveryRepository>(
+  'DeliveryRepository',
+  DeliveryRepository,
+);
+
+container.registerSingleton<IDeliveryInstanceRepository>(
+  'DeliveryInstanceRepository',
+  DeliveryInstanceRepository,
 );
