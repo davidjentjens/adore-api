@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import CreateDeliveryService from '@modules/deliveries/services/CreateDeliveryService';
+import FindDeliveryByPerkService from '@modules/deliveries/services/FindDeliveryByPerkService';
 
 export default class DeliveryController {
   public async create(req: Request, res: Response): Promise<Response> {
@@ -17,5 +18,17 @@ export default class DeliveryController {
     });
 
     return res.json(delivery);
+  }
+
+  public async findByPerk(req: Request, res: Response): Promise<Response> {
+    const { id: perk_id } = req.params;
+
+    const findDeliveryByPerk = container.resolve(FindDeliveryByPerkService);
+
+    const deliveries = await findDeliveryByPerk.execute({
+      perk_id,
+    });
+
+    return res.json(deliveries);
   }
 }

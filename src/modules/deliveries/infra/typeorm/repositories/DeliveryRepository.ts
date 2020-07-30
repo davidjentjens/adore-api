@@ -47,6 +47,18 @@ class DeliveryRepository implements IDeliveryRepository {
     return findDelivery;
   }
 
+  public async findByPerk(perk_id: string): Promise<Delivery[]> {
+    const findDeliveries = await this.ormRepository
+      .createQueryBuilder('delivery')
+      .where({
+        perk_id,
+      })
+      .leftJoinAndSelect('delivery.perk', 'perk')
+      .getMany();
+
+    return findDeliveries;
+  }
+
   public async save(delivery: Delivery): Promise<Delivery> {
     return this.ormRepository.save(delivery);
   }

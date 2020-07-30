@@ -9,6 +9,8 @@ const deliveryController = new DeliveryController();
 
 deliveryRouter.use(ensureAuthenticated);
 
+deliveryRouter.get('/perk/:id', deliveryController.findByPerk);
+
 deliveryRouter.post(
   '/',
   celebrate({

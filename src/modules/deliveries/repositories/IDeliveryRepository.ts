@@ -7,6 +7,7 @@ export default interface IDeliveryRepository {
   create(data: IDeliveryDTO): Promise<Delivery>;
   find(delivery_id: string): Promise<Delivery | undefined>;
   findByDate(data: IFindByDateDTO): Promise<Delivery | undefined>;
+  findByPerk(perk_id: string): Promise<Delivery[]>;
   save(delivery: Delivery): Promise<Delivery>;
   delete(delivery_id: string): Promise<void>;
 }
