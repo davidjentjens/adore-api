@@ -56,16 +56,16 @@ class CreateDeliveryService {
       perk_id,
     });
 
-    const formattedDate = format(deliveryDate, "dd/MM/yyyy 'às' HH:mm'h'");
+    // const formattedDate = format(deliveryDate, "dd/MM/yyyy 'às' HH:mm'h'");
 
-    await this.notificationsRepository.create({
-      recipient_id: owner_id,
-      content: `Novo agendamento para dia ${formattedDate}`,
-    });
+    // await this.notificationsRepository.create({
+    //   recipient_id: owner_id,
+    //   content: `Novo agendamento para dia ${formattedDate}`,
+    // });
 
-    await this.cacheProvider.invalidate(
-      `provider-appointments:${owner_id}:${format(deliveryDate, 'yyyy-M-d')}`,
-    );
+    // await this.cacheProvider.invalidate(
+    //   `provider-appointments:${owner_id}:${format(deliveryDate, 'yyyy-M-d')}`,
+    // );
 
     return delivery;
   }
