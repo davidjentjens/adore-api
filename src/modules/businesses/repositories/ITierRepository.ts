@@ -10,5 +10,5 @@ export default interface ITierRepository {
   findByBusiness(business_id: string): Promise<Tier[]>;
   findAll(): Promise<Tier[]>;
   save(tier: Tier): Promise<Tier>;
-  delete(tier: Tier): Promise<void>;
+  delete(tier_id: string): Promise<void>;
 }

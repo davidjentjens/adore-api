@@ -10,5 +10,5 @@ export default interface IBusinessRepository {
   findByType(category_id: string): Promise<Business[]>;
   findAllFeatured(): Promise<Business[]>;
   save(business: Business): Promise<Business>;
-  delete(business: Business): Promise<void>;
+  delete(business_id: string): Promise<void>;
 }

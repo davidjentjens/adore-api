@@ -90,8 +90,8 @@ class BusinessRepository implements IBusinessRepository {
     return this.ormRepository.save(business);
   }
 
-  public async delete(business: Business): Promise<void> {
-    await this.ormRepository.remove(business);
+  public async delete(business_id: string): Promise<void> {
+    await this.ormRepository.delete({ id: business_id });
   }
 }
 

@@ -84,8 +84,8 @@ class TierRepository implements ITierRepository {
     return this.ormRepository.save(tier);
   }
 
-  public async delete(tier: Tier): Promise<void> {
-    await this.ormRepository.remove(tier);
+  public async delete(tier_id: string): Promise<void> {
+    await this.ormRepository.delete({ id: tier_id });
   }
 }
 

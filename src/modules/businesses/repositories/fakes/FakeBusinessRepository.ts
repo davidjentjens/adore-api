@@ -66,9 +66,9 @@ class BusinessRepository implements IBusinessRepository {
     return business;
   }
 
-  public async delete(business: Business): Promise<void> {
+  public async delete(business_id: string): Promise<void> {
     this.businesses = this.businesses.filter(
-      findBusiness => findBusiness.id !== business.id,
+      findBusiness => findBusiness.id !== business_id,
     );
   }
 }

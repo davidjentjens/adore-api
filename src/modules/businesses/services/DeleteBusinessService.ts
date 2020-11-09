@@ -27,7 +27,7 @@ class DeleteBusinessService {
       throw new AppError('You are not the owner of this business', 403);
     }
 
-    await this.businessRepository.delete(findBusiness);
+    await this.businessRepository.delete(findBusiness.id);
   }
 }
 

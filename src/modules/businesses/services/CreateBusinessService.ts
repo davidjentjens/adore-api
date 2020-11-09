@@ -3,14 +3,19 @@ import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 
 import Business from '@modules/businesses/infra/typeorm/entities/Business';
-import IBusinessRepository from '@modules/businesses/repositories/IBusinessRepository';
+
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import ICategoriesRepository from '@modules/businesses/repositories/ICategoriesRepository';
+import IBusinessRepository from '@modules/businesses/repositories/IBusinessRepository';
 
 import IRequest from '@modules/businesses/dtos/IBusinessDTO';
 
 @injectable()
 class CreateBusinessService {
   constructor(
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
+
     @inject('CategoriesRepository')
     private categoriesRepository: ICategoriesRepository,
 
@@ -38,6 +43,12 @@ class CreateBusinessService {
 
     if (findBusinessWithSameName) {
       throw new AppError('A business by this name already exists');
+    }
+
+    const findOwner = await this.usersRepository.findById(owner_id);
+
+    if (!findOwner) {
+      throw new AppError('Business owner does not exist');
     }
 
     const findCategory = await this.categoriesRepository.find(category_id);

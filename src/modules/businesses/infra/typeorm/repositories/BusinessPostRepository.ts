@@ -67,8 +67,8 @@ class BusinessPostRepository implements IBusinessPostsRepository {
     return this.ormRepository.save(businessPost);
   }
 
-  public async delete(businessPost: BusinessPost): Promise<void> {
-    await this.ormRepository.remove(businessPost);
+  public async delete(business_post_id: string): Promise<void> {
+    await this.ormRepository.delete({ id: business_post_id });
   }
 }
 

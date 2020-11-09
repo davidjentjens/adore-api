@@ -46,7 +46,7 @@ class DeleteBusinessPostService {
       );
     }
 
-    await this.businessPostsRepository.delete(findBusinessPost);
+    await this.businessPostsRepository.delete(findBusinessPost.id);
   }
 }
 

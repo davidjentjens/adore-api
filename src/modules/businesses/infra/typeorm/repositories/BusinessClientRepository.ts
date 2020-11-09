@@ -79,8 +79,8 @@ class BusinessClientRepository implements IBusinessClientRepository {
     return this.ormRepository.save(businessClient);
   }
 
-  public async delete(id: string): Promise<void> {
-    await this.ormRepository.delete({ id });
+  public async delete(business_client_id: string): Promise<void> {
+    await this.ormRepository.delete({ id: business_client_id });
   }
 }
 

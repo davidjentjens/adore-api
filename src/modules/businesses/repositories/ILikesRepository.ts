@@ -9,5 +9,5 @@ export default interface ILikesRepository {
   findAllByUser(client_id: string): Promise<Like[]>;
   findAllInPost(business_post_id: string): Promise<Like[]>;
   save(like: Like): Promise<Like>;
-  delete(like: Like): Promise<void>;
+  delete(like_id: string): Promise<void>;
 }

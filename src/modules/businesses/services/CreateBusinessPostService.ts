@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IBusinessRepository from '@modules/businesses/repositories/IBusinessRepository';
 import IBusinessPostsRepository from '@modules/businesses/repositories/IBusinessPostsRepository';
 
@@ -10,6 +11,9 @@ import BusinessPost from '../infra/typeorm/entities/BusinessPost';
 @injectable()
 class CreateBusinessPostService {
   constructor(
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
+
     @inject('BusinessRepository')
     private businessRepository: IBusinessRepository,
 
@@ -25,6 +29,12 @@ class CreateBusinessPostService {
     business_id,
     image_url,
   }: IRequest): Promise<BusinessPost> {
+    const findOwner = await this.usersRepository.findById(owner_id);
+
+    if (!findOwner) {
+      throw new AppError('Business owner does not exist');
+    }
+
     const findBusiness = await this.businessRepository.find(business_id);
 
     if (!findBusiness) {

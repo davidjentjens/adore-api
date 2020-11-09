@@ -8,5 +8,5 @@ export default interface IBusinessClientRepository {
   findAll(): Promise<BusinessPost[]>;
   findAllInBusiness(business_id: string): Promise<BusinessPost[]>;
   save(businessPost: BusinessPost): Promise<BusinessPost>;
-  delete(businessPost: BusinessPost): Promise<void>;
+  delete(business_post_id: string): Promise<void>;
 }

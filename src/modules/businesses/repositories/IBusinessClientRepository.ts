@@ -16,5 +16,5 @@ export default interface IBusinessClientRepository {
   findSubscription(data: ISubscription): Promise<BusinessClient | undefined>;
   findSubscribed(client_id: string): Promise<BusinessClient[]>;
   save(businessClient: BusinessClient): Promise<BusinessClient>;
-  delete(id: string): Promise<void>;
+  delete(business_client_id: string): Promise<void>;
 }

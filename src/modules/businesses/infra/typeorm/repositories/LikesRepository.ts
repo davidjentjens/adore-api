@@ -65,8 +65,8 @@ class LikesRepository implements ILikeRepository {
     return this.ormRepository.save(like);
   }
 
-  public async delete(like: Like): Promise<void> {
-    await this.ormRepository.remove(like);
+  public async delete(like_id: string): Promise<void> {
+    await this.ormRepository.delete({ id: like_id });
   }
 }
 
