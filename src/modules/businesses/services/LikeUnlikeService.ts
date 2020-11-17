@@ -34,7 +34,7 @@ class LikeUnlikeService {
     });
 
     if (liked) {
-      await this.likeRepository.delete(liked);
+      await this.likeRepository.delete(liked.id);
       return undefined;
     }
 

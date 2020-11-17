@@ -52,9 +52,9 @@ class BusinessPostsRepository implements IBusinessPostsRepository {
     return businessPost;
   }
 
-  public async delete(businessPost: BusinessPost): Promise<void> {
+  public async delete(business_post_id: string): Promise<void> {
     this.businessPosts = this.businessPosts.filter(
-      findBusinessPost => findBusinessPost.id !== businessPost.id,
+      findBusinessPost => findBusinessPost.id !== business_post_id,
     );
   }
 }

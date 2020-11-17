@@ -4,14 +4,22 @@ import AppError from '@shared/errors/AppError';
 
 import Tier from '@modules/businesses/infra/typeorm/entities/Tier';
 
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IBusinessRepository from '@modules/businesses/repositories/IBusinessRepository';
 import ITierRepository from '@modules/businesses/repositories/ITierRepository';
 
-import IRequest from '@modules/businesses/dtos/ITierDTO';
+import ITierDTO from '@modules/businesses/dtos/ITierDTO';
+
+interface IRequest extends ITierDTO {
+  owner_id: string;
+}
 
 @injectable()
 class CreateTierService {
   constructor(
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
+
     @inject('BusinessRepository')
     private businessRepository: IBusinessRepository,
 
@@ -29,6 +37,12 @@ class CreateTierService {
     value,
     image_url,
   }: IRequest): Promise<Tier> {
+    const findUser = await this.usersRepository.findById(owner_id);
+
+    if (!findUser) {
+      throw new AppError('User does not exist');
+    }
+
     const findBusiness = await this.businessRepository.find(business_id);
 
     if (!findBusiness) {
@@ -65,7 +79,6 @@ class CreateTierService {
     } */
 
     const tier = await this.tierRepository.create({
-      owner_id,
       business_id,
       name,
       desc,

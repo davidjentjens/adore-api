@@ -23,8 +23,8 @@ describe('CreateBusiness', () => {
 
   it('should be able to create a new category', async () => {
     const user = await fakeUsersRepository.create({
-      name: 'John Doe',
-      email: 'johndoe@example.com',
+      name: 'admin',
+      email: 'admin@example.com',
       password: '123456',
     });
 
@@ -49,8 +49,8 @@ describe('CreateBusiness', () => {
 
   it('should not be able to create a new category if user is not admin', async () => {
     const user = await fakeUsersRepository.create({
-      name: 'admin',
-      email: 'admin@example.com',
+      name: 'not-admin',
+      email: 'not-admin@example.com',
       password: '123456',
     });
 

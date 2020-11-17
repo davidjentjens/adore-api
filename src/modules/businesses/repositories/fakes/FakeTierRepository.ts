@@ -1,14 +1,19 @@
 import { uuid } from 'uuidv4';
 
 import ITierDTO from '@modules/businesses/dtos/ITierDTO';
+import Business from '@modules/businesses/infra/typeorm/entities/Business';
 import ITierRepository from '../ITierRepository';
 
 import Tier from '../../infra/typeorm/entities/Tier';
 
+interface IRequest extends ITierDTO {
+  business: Business;
+}
+
 class TierRepository implements ITierRepository {
   private tiers: Tier[] = [];
 
-  public async create(tierData: ITierDTO): Promise<Tier> {
+  public async create(tierData: IRequest): Promise<Tier> {
     const tier = new Tier();
 
     Object.assign(tier, { id: uuid() }, tierData);

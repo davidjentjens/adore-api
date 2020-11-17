@@ -5,6 +5,7 @@ import { isUuid } from 'uuidv4';
 import AppError from '@shared/errors/AppError';
 
 import BusinessClient from '@modules/businesses/infra/typeorm/entities/BusinessClient';
+
 import IBusinessClientRepository from '@modules/businesses/repositories/IBusinessClientRepository';
 import ITierRepository from '@modules/businesses/repositories/ITierRepository';
 
@@ -52,7 +53,7 @@ class SubscribeToBusinessService {
     }
 
     const subscribedToAnotherTier = await this.businessClientRepository.findSubscription(
-      { business_id, client_id },
+      { business_id, client_id, tier_id },
     );
 
     if (subscribedToAnotherTier) {
