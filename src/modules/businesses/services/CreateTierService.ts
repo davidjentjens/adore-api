@@ -43,7 +43,7 @@ class CreateTierService {
       throw new AppError('User does not exist');
     }
 
-    const findBusiness = await this.businessRepository.find(business_id);
+    const findBusiness = await this.businessRepository.findById(business_id);
 
     if (!findBusiness) {
       throw new AppError('Business does not exist', 404);

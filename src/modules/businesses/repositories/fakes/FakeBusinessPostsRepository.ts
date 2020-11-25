@@ -20,7 +20,7 @@ class BusinessPostsRepository implements IBusinessPostsRepository {
     return businessPost;
   }
 
-  public async find(
+  public async findById(
     busines_post_id: string,
   ): Promise<BusinessPost | undefined> {
     const findBusinessPost = this.businessPosts.find(

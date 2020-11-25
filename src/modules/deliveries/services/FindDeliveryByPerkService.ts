@@ -21,7 +21,7 @@ class FindDeliveryByPerkService {
   ) {}
 
   public async execute({ perk_id }: IRequest): Promise<Delivery[]> {
-    const perk = await this.perksRepository.find(perk_id);
+    const perk = await this.perksRepository.findById(perk_id);
 
     if (!perk) {
       throw new AppError('Perk not found', 404);

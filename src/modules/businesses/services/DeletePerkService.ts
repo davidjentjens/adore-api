@@ -21,13 +21,13 @@ class DeletePerkService {
   ) {}
 
   public async execute({ client_id, perk_id }: IRequest): Promise<void> {
-    const findPerk = await this.perksRepository.find(perk_id);
+    const findPerk = await this.perksRepository.findById(perk_id);
 
     if (!findPerk) {
       throw new AppError('Perk not found', 404);
     }
 
-    const findTier = await this.tierRepository.find(findPerk.tier_id);
+    const findTier = await this.tierRepository.findById(findPerk.tier_id);
 
     if (!findTier) {
       throw new AppError('Tier does not exist');

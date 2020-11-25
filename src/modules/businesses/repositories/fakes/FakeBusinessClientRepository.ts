@@ -30,26 +30,13 @@ class BusinessClientRepository implements IBusinessClientRepository {
     return findBusinessClient;
   }
 
-  public async findSameTierSubscription(
-    data: IBusinessClientDTO,
-  ): Promise<BusinessClient | undefined> {
-    const findBusinessClient = this.businessClients.find(
-      businessClient =>
-        businessClient.client_id === data.client_id &&
-        businessClient.business_id === data.business_id &&
-        businessClient.tier_id === data.tier_id,
-    );
-
-    return findBusinessClient;
-  }
-
   public async findSubscription(
     data: IBusinessClientDTO,
   ): Promise<BusinessClient | undefined> {
     const findBusinessClient = this.businessClients.find(
       businessClient =>
         businessClient.client_id === data.client_id &&
-        businessClient.business_id === data.business_id,
+        businessClient.tier_id === data.tier_id,
     );
 
     return findBusinessClient;

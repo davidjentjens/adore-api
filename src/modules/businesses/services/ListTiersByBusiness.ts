@@ -22,7 +22,7 @@ class ListTiersByBusiness {
   ) {}
 
   public async execute({ business_id }: IRequest): Promise<Tier[] | undefined> {
-    const findBusiness = await this.businessRepository.find(business_id);
+    const findBusiness = await this.businessRepository.findById(business_id);
 
     if (!findBusiness) {
       throw new AppError('Business does not exist', 404);

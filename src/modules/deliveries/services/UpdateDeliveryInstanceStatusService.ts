@@ -32,7 +32,7 @@ class UpdateDeliveryInstanceStatusService {
     delivery_instance_id,
     status,
   }: IRequest): Promise<DeliveryInstance> {
-    const deliveryInstance = await this.deliveryInstanceRepository.find(
+    const deliveryInstance = await this.deliveryInstanceRepository.findById(
       delivery_instance_id,
     );
 

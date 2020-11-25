@@ -24,7 +24,7 @@ class ListBusinessesByTypeService {
   public async execute({
     category_id,
   }: IRequest): Promise<Business[] | undefined> {
-    const category = await this.categoriesRepository.find(category_id);
+    const category = await this.categoriesRepository.findById(category_id);
 
     if (!category) {
       throw new AppError('Category does not exist');

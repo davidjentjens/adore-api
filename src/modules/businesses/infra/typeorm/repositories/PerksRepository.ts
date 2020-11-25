@@ -31,12 +31,12 @@ class PerksRepository implements IPerksRepository {
     return perk;
   }
 
-  public async find(perk_id: string): Promise<Perk | undefined> {
+  public async findById(perk_id: string): Promise<Perk | undefined> {
     return this.ormRepository.findOne({ where: { id: perk_id } });
   }
 
   public async findByTier(tier_id: string): Promise<Perk[]> {
-    return this.ormRepository.find({
+    return this.ormRepository.findById({
       where: {
         tier_id,
       },

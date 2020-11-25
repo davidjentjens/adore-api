@@ -20,7 +20,7 @@ class FindDeliveryInstanceService {
   public async execute({
     delivery_instance_id,
   }: IRequest): Promise<DeliveryInstance> {
-    const deliveryInstance = await this.deliveryInstanceRepository.find(
+    const deliveryInstance = await this.deliveryInstanceRepository.findById(
       delivery_instance_id,
     );
 

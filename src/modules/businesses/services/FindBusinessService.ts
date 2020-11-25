@@ -18,7 +18,7 @@ class FindBusinessService {
   public async execute({
     business_id,
   }: IRequest): Promise<Business | undefined> {
-    const business = await this.businessRepository.find(business_id);
+    const business = await this.businessRepository.findById(business_id);
 
     if (!business) {
       throw new AppError('Business not found', 404);

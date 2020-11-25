@@ -18,7 +18,7 @@ likesRouter.post(
   ensureAuthenticated,
   celebrate({
     [Segments.BODY]: {
-      business_post_id: Joi.string().required(),
+      business_post_id: Joi.string().guid().required(),
     },
   }),
   likesController.likeUnlike,

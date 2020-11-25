@@ -23,7 +23,7 @@ class TierRepository implements ITierRepository {
     return tier;
   }
 
-  public async find(tier_id: string): Promise<Tier | undefined> {
+  public async findById(tier_id: string): Promise<Tier | undefined> {
     const findTier = this.tiers.find(tier => tier.id === tier_id);
 
     return findTier;
@@ -36,9 +36,9 @@ class TierRepository implements ITierRepository {
   }
 
   public async findByRank(rank: number): Promise<Tier | undefined> {
-    const findTier = this.tiers.find(tier => tier.rank === rank);
+    const findTiers = this.tiers.find(tier => tier.rank === rank);
 
-    return findTier;
+    return findTiers;
   }
 
   public async findByBusiness(business_id: string): Promise<Tier[]> {

@@ -21,7 +21,7 @@ class ListBusinessPostsByBusinessService {
   ) {}
 
   public async execute({ business_id }: IRequest): Promise<BusinessPost[]> {
-    const findBusiness = await this.businessRepository.find(business_id);
+    const findBusiness = await this.businessRepository.findById(business_id);
 
     if (!findBusiness) {
       throw new AppError('Business does not exist');

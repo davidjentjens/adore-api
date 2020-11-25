@@ -23,7 +23,7 @@ class CategoriesRepository implements ICategoriesRepository {
     return category;
   }
 
-  public async find(category_id: string): Promise<Category | undefined> {
+  public async findById(category_id: string): Promise<Category | undefined> {
     const findCategory = await this.ormRepository.findOne({
       where: { id: category_id },
     });
@@ -32,7 +32,7 @@ class CategoriesRepository implements ICategoriesRepository {
   }
 
   public async findAll(): Promise<Category[]> {
-    const findCategories = await this.ormRepository.find();
+    const findCategories = await this.ormRepository.findById();
 
     return findCategories;
   }

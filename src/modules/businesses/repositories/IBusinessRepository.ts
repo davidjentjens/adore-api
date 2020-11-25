@@ -4,7 +4,7 @@ import IBusinessDTO from '../dtos/IBusinessDTO';
 
 export default interface IBusinessRepository {
   create(data: IBusinessDTO): Promise<Business>;
-  find(business_id: string): Promise<Business | undefined>;
+  findById(business_id: string): Promise<Business | undefined>;
   findByName(business_name: string): Promise<Business | undefined>;
   findAll(): Promise<Business[]>;
   findByType(category_id: string): Promise<Business[]>;

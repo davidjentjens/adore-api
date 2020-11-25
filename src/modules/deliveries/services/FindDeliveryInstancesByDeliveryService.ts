@@ -26,7 +26,7 @@ class FindDeliveryInstancesByDeliveryService {
   ) {}
 
   public async execute({ delivery_id }: IRequest): Promise<DeliveryInstance[]> {
-    const delivery = await this.deliveryRepository.find(delivery_id);
+    const delivery = await this.deliveryRepository.findById(delivery_id);
 
     if (!delivery) {
       throw new AppError('Delivery not found', 404);

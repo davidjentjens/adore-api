@@ -14,12 +14,10 @@ class BusinessClientRepository implements IBusinessClientRepository {
   }
 
   public async create({
-    business_id,
     client_id,
     tier_id,
   }: IBusinessClientDTO): Promise<BusinessClient> {
-    const businessClient = await this.ormRepository.create({
-      business_id,
+    const businessClient = this.ormRepository.create({
       client_id,
       tier_id,
     });
@@ -33,35 +31,16 @@ class BusinessClientRepository implements IBusinessClientRepository {
     return this.ormRepository.findOne({ where: { id } });
   }
 
-  public async findSameTierSubscription({
-    business_id,
+  public async findSubscription({
     client_id,
     tier_id,
   }: IBusinessClientDTO): Promise<BusinessClient | undefined> {
     return this.ormRepository.findOne({
       where: {
-        business_id,
         client_id,
         tier_id,
       },
     });
-  }
-
-  public async findSubscription({
-    business_id,
-    client_id,
-  }: IBusinessClientDTO): Promise<BusinessClient | undefined> {
-    const findSubscription = await this.ormRepository
-      .createQueryBuilder('business_client')
-      .where({
-        business_id,
-        client_id,
-      })
-      .leftJoinAndSelect('business_client.business', 'business')
-      .leftJoinAndSelect('business_client.tier', 'tier')
-      .getMany();
-
-    return findSubscription[0] ? findSubscription[0] : undefined;
   }
 
   public async findSubscribed(client_id: string): Promise<BusinessClient[]> {
@@ -70,7 +49,6 @@ class BusinessClientRepository implements IBusinessClientRepository {
       .where({
         client_id,
       })
-      .leftJoinAndSelect('business_client.business', 'business')
       .leftJoinAndSelect('business_client.tier', 'tier')
       .getMany();
   }

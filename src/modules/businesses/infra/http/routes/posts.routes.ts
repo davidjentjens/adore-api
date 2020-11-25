@@ -25,7 +25,7 @@ postRouter.post(
       title: Joi.string().required(),
       short_desc: Joi.string().required(),
       desc: Joi.string().required(),
-      business_id: Joi.string().required(),
+      business_id: Joi.string().guid().required(),
       image_url: Joi.string().required(),
     },
   }),

@@ -46,7 +46,7 @@ class BusinessRepository implements IBusinessRepository {
     return business;
   }
 
-  public async find(business_id: string): Promise<Business | undefined> {
+  public async findById(business_id: string): Promise<Business | undefined> {
     const findBusiness = await this.ormRepository.findOne({
       where: { id: business_id },
     });
@@ -65,13 +65,13 @@ class BusinessRepository implements IBusinessRepository {
   }
 
   public async findAll(): Promise<Business[]> {
-    const findBusinesses = await this.ormRepository.find();
+    const findBusinesses = await this.ormRepository.findById();
 
     return findBusinesses;
   }
 
   public async findByType(category_id: string): Promise<Business[]> {
-    const findBusinesses = await this.ormRepository.find({
+    const findBusinesses = await this.ormRepository.findById({
       where: { category_id },
     });
 
@@ -79,7 +79,7 @@ class BusinessRepository implements IBusinessRepository {
   }
 
   public async findAllFeatured(): Promise<Business[]> {
-    const findFeaturedBusinesses = await this.ormRepository.find({
+    const findFeaturedBusinesses = await this.ormRepository.findById({
       where: { featured: true },
     });
 

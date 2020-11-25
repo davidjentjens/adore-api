@@ -8,13 +8,12 @@ import UnsubscribeFromBusinessService from '@modules/businesses/services/Unsubsc
 export default class SubscriptionsController {
   public async create(req: Request, res: Response): Promise<Response> {
     const { id: client_id } = req.user;
-    const { business_id, tier_id } = req.body;
+    const { tier_id } = req.body;
 
     const subscribeToBusiness = container.resolve(SubscribeToBusinessService);
 
     const business = await subscribeToBusiness.execute({
       client_id,
-      business_id,
       tier_id,
     });
 

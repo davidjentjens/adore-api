@@ -26,7 +26,7 @@ class LikesRepository implements ILikeRepository {
     return like;
   }
 
-  public async find(like_id: string): Promise<Like | undefined> {
+  public async findById(like_id: string): Promise<Like | undefined> {
     const findLike = await this.ormRepository.findOne({
       where: { id: like_id },
     });
@@ -46,7 +46,7 @@ class LikesRepository implements ILikeRepository {
   }
 
   public async findAllByUser(client_id: string): Promise<Like[]> {
-    const findLikes = await this.ormRepository.find({
+    const findLikes = await this.ormRepository.findById({
       where: { client_id },
     });
 
@@ -54,7 +54,7 @@ class LikesRepository implements ILikeRepository {
   }
 
   public async findAllInPost(business_post_id: string): Promise<Like[]> {
-    const findLikes = await this.ormRepository.find({
+    const findLikes = await this.ormRepository.findById({
       where: { business_post_id },
     });
 

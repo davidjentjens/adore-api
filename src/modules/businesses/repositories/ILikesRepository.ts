@@ -4,7 +4,7 @@ import ILikeDTO from '../dtos/ILikeDTO';
 
 export default interface ILikesRepository {
   create(data: ILikeDTO): Promise<Like>;
-  find(like_id: string): Promise<Like | undefined>;
+  findById(like_id: string): Promise<Like | undefined>;
   findByClientPost(data: ILikeDTO): Promise<Like | undefined>;
   findAllByUser(client_id: string): Promise<Like[]>;
   findAllInPost(business_post_id: string): Promise<Like[]>;

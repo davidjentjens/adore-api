@@ -15,7 +15,7 @@ class SubscribeToBusinessService {
   ) {}
 
   public async execute({ client_id }: IRequest): Promise<BusinessClient[]> {
-    const subscriptions = this.businessClientRepository.findSubscribed(
+    const subscriptions = await this.businessClientRepository.findSubscribed(
       client_id,
     );
 

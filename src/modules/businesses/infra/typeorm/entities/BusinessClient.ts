@@ -8,7 +8,6 @@ import {
   ManyToOne,
 } from 'typeorm';
 
-import Business from '@modules/businesses/infra/typeorm/entities/Business';
 import User from '@modules/users/infra/typeorm/entities/User';
 import Tier from '@modules/businesses/infra/typeorm/entities/Tier';
 
@@ -17,10 +16,6 @@ class BusinessClient {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => Business)
-  @JoinColumn({ name: 'business_id' })
-  business: Business;
-
   @ManyToOne(() => User)
   @JoinColumn({ name: 'client_id' })
   client: User;
@@ -28,9 +23,6 @@ class BusinessClient {
   @ManyToOne(() => Tier)
   @JoinColumn({ name: 'tier_id' })
   tier: Tier;
-
-  @Column()
-  business_id: string;
 
   @Column()
   client_id: string;

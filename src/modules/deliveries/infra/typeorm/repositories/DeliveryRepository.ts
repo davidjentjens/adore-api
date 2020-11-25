@@ -22,7 +22,7 @@ class DeliveryRepository implements IDeliveryRepository {
     return delivery;
   }
 
-  public async find(delivery_id: string): Promise<Delivery | undefined> {
+  public async findById(delivery_id: string): Promise<Delivery | undefined> {
     const findDelivery = await this.ormRepository
       .createQueryBuilder('delivery')
       .where({

@@ -5,9 +5,6 @@ import IBusinessClientDTO from '../dtos/IBusinessClientDTO';
 export default interface IBusinessClientRepository {
   create(data: IBusinessClientDTO): Promise<BusinessClient>;
   findById(id: string): Promise<BusinessClient | undefined>;
-  findSameTierSubscription(
-    data: IBusinessClientDTO,
-  ): Promise<BusinessClient | undefined>;
   findSubscription(
     data: IBusinessClientDTO,
   ): Promise<BusinessClient | undefined>;

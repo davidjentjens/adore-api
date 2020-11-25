@@ -21,7 +21,7 @@ class ListPerksByTierService {
   ) {}
 
   public async execute({ tier_id }: IRequest): Promise<Perk[]> {
-    const findTier = await this.tierRepository.find(tier_id);
+    const findTier = await this.tierRepository.findById(tier_id);
 
     if (!findTier) {
       throw new AppError('Tier does not exist');

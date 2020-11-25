@@ -21,7 +21,7 @@ tierRouter.post(
   ensureAuthenticated,
   celebrate({
     [Segments.BODY]: {
-      business_id: Joi.string().required(),
+      business_id: Joi.string().guid().required(),
       name: Joi.string().required(),
       desc: Joi.string().required(),
       value: Joi.number().required(),

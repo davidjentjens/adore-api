@@ -27,7 +27,7 @@ class DeliveryInstanceInstanceRepository
     return deliveryInstance;
   }
 
-  public async find(
+  public async findById(
     delivery_instance_id: string,
   ): Promise<DeliveryInstance | undefined> {
     const findDeliveryInstance = await this.ormRepository

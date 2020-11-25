@@ -32,7 +32,7 @@ class BusinessPostRepository implements IBusinessPostsRepository {
     return businessPost;
   }
 
-  public async find(
+  public async findById(
     business_post_id: string,
   ): Promise<BusinessPost | undefined> {
     const findBusinessPost = await this.ormRepository

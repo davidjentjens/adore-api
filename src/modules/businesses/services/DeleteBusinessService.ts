@@ -17,7 +17,7 @@ class DeleteBusinessService {
   ) {}
 
   public async execute({ owner_id, business_id }: IRequest): Promise<void> {
-    const findBusiness = await this.businessRepository.find(business_id);
+    const findBusiness = await this.businessRepository.findById(business_id);
 
     if (!findBusiness) {
       throw new AppError('Business does not exist', 404);

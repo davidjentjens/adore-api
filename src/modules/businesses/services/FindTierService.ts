@@ -18,7 +18,7 @@ class FindTierService {
   ) {}
 
   public async execute({ tier_id }: IRequest): Promise<Tier> {
-    const tier = await this.tierRepository.find(tier_id);
+    const tier = await this.tierRepository.findById(tier_id);
 
     if (!tier) {
       throw new AppError('Tier not found', 404);

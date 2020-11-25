@@ -29,7 +29,7 @@ class FindBusinessPostService {
     client_id,
     business_post_id,
   }: IRequest): Promise<IBusinessPostWithLikes> {
-    const findBusinessPost = await this.businessPostsRepository.find(
+    const findBusinessPost = await this.businessPostsRepository.findById(
       business_post_id,
     );
 

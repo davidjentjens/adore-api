@@ -32,7 +32,7 @@ businessRouter.post(
       email: Joi.string().email().required(),
       image_url: Joi.string().required(),
       whatsapp: Joi.string().required(),
-      category_id: Joi.string().required(),
+      category_id: Joi.string().guid().required(),
       featured: Joi.required(),
     },
   }),

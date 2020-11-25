@@ -4,7 +4,7 @@ import IBusinessPostDTO from '../dtos/IBusinessPostDTO';
 
 export default interface IBusinessPostsRepository {
   create(data: IBusinessPostDTO): Promise<BusinessPost>;
-  find(business_post_id: string): Promise<BusinessPost | undefined>;
+  findById(business_post_id: string): Promise<BusinessPost | undefined>;
   findAll(): Promise<BusinessPost[]>;
   findAllInBusiness(business_id: string): Promise<BusinessPost[]>;
   save(businessPost: BusinessPost): Promise<BusinessPost>;

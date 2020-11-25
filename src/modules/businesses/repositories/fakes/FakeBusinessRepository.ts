@@ -18,7 +18,7 @@ class BusinessRepository implements IBusinessRepository {
     return business;
   }
 
-  public async find(business_id: string): Promise<Business | undefined> {
+  public async findById(business_id: string): Promise<Business | undefined> {
     const findBusiness = this.businesses.find(
       business => business.id === business_id,
     );

@@ -24,7 +24,7 @@ class DeleteBusinessPostService {
     owner_id,
     business_post_id,
   }: IRequest): Promise<void> {
-    const findBusinessPost = await this.businessPostsRepository.find(
+    const findBusinessPost = await this.businessPostsRepository.findById(
       business_post_id,
     );
 
@@ -32,7 +32,7 @@ class DeleteBusinessPostService {
       throw new AppError('Post does not exist');
     }
 
-    const findBusiness = await this.businessRepository.find(
+    const findBusiness = await this.businessRepository.findById(
       findBusinessPost.business_id,
     );
 

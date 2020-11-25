@@ -2,6 +2,7 @@ import { inject, injectable } from 'tsyringe';
 
 import Like from '@modules/businesses/infra/typeorm/entities/Like';
 
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import ILikeRepository from '@modules/businesses/repositories/ILikesRepository';
 import IBusinessPostsRepository from '@modules/businesses/repositories/IBusinessPostsRepository';
 
@@ -11,6 +12,9 @@ import AppError from '@shared/errors/AppError';
 @injectable()
 class LikeUnlikeService {
   constructor(
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
+
     @inject('BusinessPostsRepository')
     private businessPostsRepository: IBusinessPostsRepository,
 
@@ -22,7 +26,15 @@ class LikeUnlikeService {
     business_post_id,
     client_id,
   }: IRequest): Promise<Like | undefined> {
-    const findPost = await this.businessPostsRepository.find(business_post_id);
+    const findUser = await this.usersRepository.findById(client_id);
+
+    if (!findUser) {
+      throw new AppError('User does not exist');
+    }
+
+    const findPost = await this.businessPostsRepository.findById(
+      business_post_id,
+    );
 
     if (!findPost) {
       throw new AppError('Post not found', 404);

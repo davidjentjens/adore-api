@@ -51,7 +51,7 @@ class CreateBusinessService {
       throw new AppError('Business owner does not exist');
     }
 
-    const findCategory = await this.categoriesRepository.find(category_id);
+    const findCategory = await this.categoriesRepository.findById(category_id);
 
     if (!findCategory) {
       throw new AppError('Category does not exist');

@@ -18,7 +18,7 @@ class PerksRepository implements IPerksRepository {
     return perk;
   }
 
-  public async find(perk_id: string): Promise<Perk | undefined> {
+  public async findById(perk_id: string): Promise<Perk | undefined> {
     const findPerk = this.perks.find(perk => perk.id === perk_id);
 
     return findPerk;
