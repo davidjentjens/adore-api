@@ -65,7 +65,7 @@ class TierRepository implements ITierRepository {
   }
 
   public async findByBusiness(business_id: string): Promise<Tier[]> {
-    const tier = this.ormRepository.findById({
+    const tier = this.ormRepository.find({
       where: {
         business_id,
       },
@@ -75,7 +75,7 @@ class TierRepository implements ITierRepository {
   }
 
   public async findAll(): Promise<Tier[]> {
-    const findTiers = await this.ormRepository.findById();
+    const findTiers = await this.ormRepository.find();
 
     return findTiers;
   }

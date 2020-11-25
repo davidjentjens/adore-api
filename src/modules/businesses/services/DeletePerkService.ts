@@ -2,6 +2,7 @@ import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import ITierRepository from '@modules/businesses/repositories/ITierRepository';
 import IPerksRepository from '@modules/businesses/repositories/IPerksRepository';
 
@@ -13,6 +14,9 @@ interface IRequest {
 @injectable()
 class DeletePerkService {
   constructor(
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
+
     @inject('TierRepository')
     private tierRepository: ITierRepository,
 
@@ -21,6 +25,12 @@ class DeletePerkService {
   ) {}
 
   public async execute({ client_id, perk_id }: IRequest): Promise<void> {
+    const findUser = await this.usersRepository.findById(client_id);
+
+    if (!findUser) {
+      throw new AppError('User does not exist');
+    }
+
     const findPerk = await this.perksRepository.findById(perk_id);
 
     if (!findPerk) {

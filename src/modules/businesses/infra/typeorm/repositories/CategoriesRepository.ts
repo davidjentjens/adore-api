@@ -32,7 +32,7 @@ class CategoriesRepository implements ICategoriesRepository {
   }
 
   public async findAll(): Promise<Category[]> {
-    const findCategories = await this.ormRepository.findById();
+    const findCategories = await this.ormRepository.find();
 
     return findCategories;
   }

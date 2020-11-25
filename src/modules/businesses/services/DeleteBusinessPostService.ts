@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IBusinessRepository from '@modules/businesses/repositories/IBusinessRepository';
 import IBusinessPostsRepository from '@modules/businesses/repositories/IBusinessPostsRepository';
 
@@ -13,6 +14,9 @@ interface IRequest {
 @injectable()
 class DeleteBusinessPostService {
   constructor(
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
+
     @inject('BusinessRepository')
     private businessRepository: IBusinessRepository,
 
@@ -24,6 +28,12 @@ class DeleteBusinessPostService {
     owner_id,
     business_post_id,
   }: IRequest): Promise<void> {
+    const findUser = await this.usersRepository.findById(owner_id);
+
+    if (!findUser) {
+      throw new AppError('User does not exist');
+    }
+
     const findBusinessPost = await this.businessPostsRepository.findById(
       business_post_id,
     );

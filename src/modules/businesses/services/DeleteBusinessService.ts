@@ -2,6 +2,7 @@ import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IBusinessRepository from '@modules/businesses/repositories/IBusinessRepository';
 
 interface IRequest {
@@ -12,11 +13,20 @@ interface IRequest {
 @injectable()
 class DeleteBusinessService {
   constructor(
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
+
     @inject('BusinessRepository')
     private businessRepository: IBusinessRepository,
   ) {}
 
   public async execute({ owner_id, business_id }: IRequest): Promise<void> {
+    const findUser = await this.usersRepository.findById(owner_id);
+
+    if (!findUser) {
+      throw new AppError('User does not exist');
+    }
+
     const findBusiness = await this.businessRepository.findById(business_id);
 
     if (!findBusiness) {

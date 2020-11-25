@@ -36,7 +36,7 @@ class PerksRepository implements IPerksRepository {
   }
 
   public async findByTier(tier_id: string): Promise<Perk[]> {
-    return this.ormRepository.findById({
+    return this.ormRepository.find({
       where: {
         tier_id,
       },
