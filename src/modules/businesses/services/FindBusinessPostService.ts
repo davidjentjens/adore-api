@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import ILikeRepository from '@modules/businesses/repositories/ILikesRepository';
 import IBusinessPostsRepository from '@modules/businesses/repositories/IBusinessPostsRepository';
 
@@ -18,6 +19,9 @@ interface IRequest {
 @injectable()
 class FindBusinessPostService {
   constructor(
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
+
     @inject('LikesRepository')
     private likeRepository: ILikeRepository,
 
@@ -29,6 +33,12 @@ class FindBusinessPostService {
     client_id,
     business_post_id,
   }: IRequest): Promise<IBusinessPostWithLikes> {
+    const findUser = await this.usersRepository.findById(client_id);
+
+    if (!findUser) {
+      throw new AppError('User does not exist');
+    }
+
     const findBusinessPost = await this.businessPostsRepository.findById(
       business_post_id,
     );
