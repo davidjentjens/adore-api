@@ -5,10 +5,14 @@ import ICategoriesRepository from '../ICategoriesRepository';
 
 import Category from '../../infra/typeorm/entities/Category';
 
+interface IRequest extends ICategoryDTO {
+  user_id: string;
+}
+
 class CategoryRepository implements ICategoriesRepository {
   private categories: Category[] = [];
 
-  public async create(categoryData: ICategoryDTO): Promise<Category> {
+  public async create(categoryData: IRequest): Promise<Category> {
     const category = new Category();
 
     Object.assign(category, { id: uuid() }, categoryData);

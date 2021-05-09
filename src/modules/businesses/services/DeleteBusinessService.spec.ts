@@ -32,6 +32,7 @@ describe('DeleteBusiness', () => {
     });
 
     const category = await fakeCategoriesRepository.create({
+      user_id: 'admin_id',
       name: 'Categoria Teste',
       image_url: 'http://image-url.com',
     });
@@ -84,6 +85,7 @@ describe('DeleteBusiness', () => {
     });
 
     const category = await fakeCategoriesRepository.create({
+      user_id: 'admin_id',
       name: 'Categoria Teste',
       image_url: 'http://image-url.com',
     });
@@ -125,6 +127,7 @@ describe('DeleteBusiness', () => {
     });
 
     const category = await fakeCategoriesRepository.create({
+      user_id: 'admin_id',
       name: 'Categoria Teste',
       image_url: 'http://image-url.com',
     });

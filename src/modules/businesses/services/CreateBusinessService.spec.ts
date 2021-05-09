@@ -33,6 +33,7 @@ describe('CreateBusiness', () => {
     });
 
     const category = await fakeCategoriesRepository.create({
+      user_id: 'admin_id',
       name: 'Categoria Teste',
       image_url: 'http://image-url.com',
     });
@@ -57,6 +58,7 @@ describe('CreateBusiness', () => {
 
   it('should not be able to create a new business with a non-existant owner', async () => {
     const category = await fakeCategoriesRepository.create({
+      user_id: 'owner_id',
       name: 'Categoria Teste',
       image_url: 'http://image-url.com',
     });
@@ -112,6 +114,7 @@ describe('CreateBusiness', () => {
     });
 
     const category = await fakeCategoriesRepository.create({
+      user_id: owner.id,
       name: 'Categoria Teste',
       image_url: 'http://image-url.com',
     });
