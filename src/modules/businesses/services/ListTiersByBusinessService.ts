@@ -21,7 +21,7 @@ class ListTiersByBusinessService {
     private tierRepository: ITierRepository,
   ) {}
 
-  public async execute({ business_id }: IRequest): Promise<Tier[] | undefined> {
+  public async execute({ business_id }: IRequest): Promise<Tier[]> {
     const findBusiness = await this.businessRepository.findById(business_id);
 
     if (!findBusiness) {

@@ -21,9 +21,7 @@ class ListBusinessesByTypeService {
     private categoriesRepository: ICategoriesRepository,
   ) {}
 
-  public async execute({
-    category_id,
-  }: IRequest): Promise<Business[] | undefined> {
+  public async execute({ category_id }: IRequest): Promise<Business[]> {
     const category = await this.categoriesRepository.findById(category_id);
 
     if (!category) {

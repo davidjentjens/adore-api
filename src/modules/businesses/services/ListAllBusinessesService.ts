@@ -10,7 +10,7 @@ class ListAllBusinessesService {
     private businessRepository: IBusinessRepository,
   ) {}
 
-  public async execute(): Promise<Business[] | undefined> {
+  public async execute(): Promise<Business[]> {
     const businesses = await this.businessRepository.findAll();
 
     return businesses;

@@ -21,7 +21,9 @@ class ListLikesByPostService {
   ) {}
 
   public async execute({ business_post_id }: IRequest): Promise<Like[]> {
-    const findPost = await this.businessPostsRepository.findById(business_post_id);
+    const findPost = await this.businessPostsRepository.findById(
+      business_post_id,
+    );
 
     if (!findPost) {
       throw new AppError('Post not found', 404);
