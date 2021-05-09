@@ -5,7 +5,7 @@ import CreateBusinessService from '@modules/businesses/services/CreateBusinessSe
 import FindBusinessesService from '@modules/businesses/services/FindBusinessService';
 import ListAllBusinessesService from '@modules/businesses/services/ListAllBusinessesService';
 import ListAllFeaturedBusinessesService from '@modules/businesses/services/ListAllFeaturedBusinessesService';
-import ListBusinessesByType from '@modules/businesses/services/ListBusinessesByType';
+import ListBusinessesByTypeService from '@modules/businesses/services/ListBusinessesByTypeService';
 import DeleteBusinessService from '@modules/businesses/services/DeleteBusinessService';
 
 export default class BusinessController {
@@ -76,7 +76,7 @@ export default class BusinessController {
   public async findByType(req: Request, res: Response): Promise<Response> {
     const { category_id } = req.body;
 
-    const findBusinessesByType = container.resolve(ListBusinessesByType);
+    const findBusinessesByType = container.resolve(ListBusinessesByTypeService);
 
     const foundBusinesses = await findBusinessesByType.execute({ category_id });
 

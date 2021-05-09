@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import CreateCategoryService from '@modules/businesses/services/CreateCategoryService';
-import ListAllCategories from '@modules/businesses/services/ListAllCategories';
+import ListAllCategoriesService from '@modules/businesses/services/ListAllCategoriesService';
 
 export default class CategoryController {
   public async create(req: Request, res: Response): Promise<Response> {
@@ -12,6 +12,7 @@ export default class CategoryController {
     const createCategory = container.resolve(CreateCategoryService);
 
     const category = await createCategory.execute({
+      user_id: owner_id,
       name,
       image_url,
     });
@@ -20,9 +21,9 @@ export default class CategoryController {
   }
 
   public async findAll(req: Request, res: Response): Promise<Response> {
-    const findAllCategories = container.resolve(ListAllCategories);
+    const listAllCategories = container.resolve(ListAllCategoriesService);
 
-    const foundCategories = await findAllCategories.execute();
+    const foundCategories = await listAllCategories.execute();
 
     return res.json(foundCategories);
   }

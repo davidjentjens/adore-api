@@ -4,7 +4,7 @@ import Category from '@modules/businesses/infra/typeorm/entities/Category';
 import ICategoriesRepository from '@modules/businesses/repositories/ICategoriesRepository';
 
 @injectable()
-class ListAllCategories {
+class ListAllCategoriesService {
   constructor(
     @inject('CategoriesRepository')
     private categoriesRepository: ICategoriesRepository,
@@ -17,4 +17,4 @@ class ListAllCategories {
   }
 }
 
-export default ListAllCategories;
+export default ListAllCategoriesService;

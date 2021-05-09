@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import CreateTierService from '@modules/businesses/services/CreateTierService';
-import ListTiersByBusiness from '@modules/businesses/services/ListTiersByBusiness';
+import ListTiersByBusinessService from '@modules/businesses/services/ListTiersByBusinessService';
 import FindTierService from '@modules/businesses/services/FindTierService';
 
 export default class BusinessController {
@@ -40,7 +40,7 @@ export default class BusinessController {
   public async listByBusiness(req: Request, res: Response): Promise<Response> {
     const { id: business_id } = req.params;
 
-    const listTiersByBusiness = container.resolve(ListTiersByBusiness);
+    const listTiersByBusiness = container.resolve(ListTiersByBusinessService);
 
     const foundTiers = await listTiersByBusiness.execute({ business_id });
 

@@ -12,7 +12,7 @@ interface IRequest {
 }
 
 @injectable()
-class ListTiersByBusiness {
+class ListTiersByBusinessService {
   constructor(
     @inject('BusinessRepository')
     private businessRepository: IBusinessRepository,
@@ -34,4 +34,4 @@ class ListTiersByBusiness {
   }
 }
 
-export default ListTiersByBusiness;
+export default ListTiersByBusinessService;
