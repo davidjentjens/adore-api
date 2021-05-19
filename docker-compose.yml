@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  database:
+    image: postgres
+    container_name: database_adore
+    restart: always
+    ports:
+      - 15432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=2e6495f3f058ce9e58144716920cbbf5
+      - POSTGRES_DB=hackathon
+    volumes:
+      - pgdata:/data/postgres
+
+  redis:
+    image: redis:alpine
+    command: redis-server --requirepass 9765086acaae0136939c848cf53cc785
+    ports:
+      - 8379:6379
+
+  # app:
+  #   build: .
+  #   container_name: adorex
+  #   restart: always
+  #   ports:
+  #     - 3333:3333
+  #     - 9229:9229
+  #   volumes:
+  #     - .:/usr/app
+  #   links:
+  #     - database
+  #   depends_on:
+  #     - database
+
+volumes:
+  pgdata:
+    driver: local
