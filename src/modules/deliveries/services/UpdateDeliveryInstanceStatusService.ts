@@ -4,7 +4,6 @@ import AppError from '@shared/errors/AppError';
 
 import IDeliveryInstanceRepository from '@modules/deliveries/repositories/IDeliveryInstanceRepository';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
 
 import DeliveryInstance from '../infra/typeorm/entities/DeliveryInstance';
 
@@ -19,9 +18,6 @@ class UpdateDeliveryInstanceStatusService {
   constructor(
     @inject('DeliveryInstanceRepository')
     private deliveryInstanceRepository: IDeliveryInstanceRepository,
-
-    @inject('NotificationsRepository')
-    private notificationsRepository: INotificationsRepository,
 
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,

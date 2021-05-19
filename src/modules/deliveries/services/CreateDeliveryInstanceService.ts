@@ -5,7 +5,6 @@ import AppError from '@shared/errors/AppError';
 import IDeliveryInstanceRepository from '@modules/deliveries/repositories/IDeliveryInstanceRepository';
 import IDeliveryRepository from '@modules/deliveries/repositories/IDeliveryRepository';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
 
 import IDeliveryInstanceDTO from '../dtos/IDeliveryInstanceDTO';
 import DeliveryInstance from '../infra/typeorm/entities/DeliveryInstance';
@@ -23,9 +22,6 @@ class CreateDeliveryInstanceService {
     @inject('DeliveryRepository')
     private deliveryRepository: IDeliveryRepository,
 
-    @inject('NotificationsRepository')
-    private notificationsRepository: INotificationsRepository,
-
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
   ) {}
@@ -41,8 +37,6 @@ class CreateDeliveryInstanceService {
     if (!delivery) {
       throw new AppError('Delivery not found');
     }
-
-    console.log(delivery);
 
     const deliveryInstance = await this.deliveryInstanceRepository.create({
       client_id,

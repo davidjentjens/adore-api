@@ -15,16 +15,5 @@
     "cli": {
       "migrationsDir": "./src/shared/infra/typeorm/migrations"
     }
-  },
-  {
-    "name": "hackathon-mgdb",
-    "type": "mongodb",
-    "host": "localhost",
-    "port": 8707,
-    "database": "hackathon",
-    "useUnifiedTopology": true,
-    "entities": [
-      "./src/modules/**/infra/typeorm/schemas/*.ts"
-    ]
   }
 ]

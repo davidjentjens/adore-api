@@ -1,4 +1,4 @@
-import { startOfHour, isBefore, getHours, format } from 'date-fns';
+import { startOfHour, isBefore, getHours } from 'date-fns';
 import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
@@ -6,7 +6,6 @@ import Delivery from '@modules/deliveries/infra/typeorm/entities/Delivery';
 import IDeliveryRepository from '@modules/deliveries/repositories/IDeliveryRepository';
 
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
 
 interface IRequest {
   owner_id: string;
@@ -19,9 +18,6 @@ class CreateDeliveryService {
   constructor(
     @inject('DeliveryRepository')
     private deliveryRepository: IDeliveryRepository,
-
-    @inject('NotificationsRepository')
-    private notificationsRepository: INotificationsRepository,
 
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
