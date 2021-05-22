@@ -22,7 +22,7 @@ services:
 
   # app:
   #   build: .
-  #   container_name: adorex
+  #   container_name: adore-api
   #   restart: always
   #   ports:
   #     - 3333:3333
