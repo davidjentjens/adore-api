@@ -21,7 +21,7 @@
 1. Clonar o projeto na sua máquina.
 2. Entrar na pasta raiz do projeto.
 3. Digitar o comando `yarn` ou `npm install` para instalar as dependencias.
-4. Digitar o comando `docker-compose up` para inicializar os containeres do banco de dados.
+4. Digitar o comando `docker-compose up -d` para inicializar os containeres do banco de dados em modo detached.
 5. Digitar o comando `yarn dev` ou `npm run dev` para rodar a aplicação em modo de desenvolvimento.
 
 <br/>
