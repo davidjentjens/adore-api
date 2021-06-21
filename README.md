@@ -35,8 +35,6 @@
 
 [David Jentjens](https://github.com/davidjentjens)
 
-[Frederico Lacis](https://github.com/fredlacis)
-
 ## Links
 
 [Front-End](https://github.com/davidjentjens/adore-mobile)
