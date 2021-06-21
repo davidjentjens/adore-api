@@ -1,11 +1,12 @@
-import { startOfHour, isBefore, getHours } from 'date-fns';
+import { startOfHour, isBefore, getHours, isEqual } from 'date-fns';
 import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 import Delivery from '@modules/deliveries/infra/typeorm/entities/Delivery';
 import IDeliveryRepository from '@modules/deliveries/repositories/IDeliveryRepository';
 
-import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
+// import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
+// import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
 
 interface IRequest {
   owner_id: string;
@@ -18,10 +19,11 @@ class CreateDeliveryService {
   constructor(
     @inject('DeliveryRepository')
     private deliveryRepository: IDeliveryRepository,
+  ) /* @inject('NotificationsRepository')
+    private notificationsRepository: INotificationsRepository,
 
     @inject('CacheProvider')
-    private cacheProvider: ICacheProvider,
-  ) {}
+    private cacheProvider: ICacheProvider, */ {}
 
   public async execute({
     owner_id,
@@ -38,12 +40,21 @@ class CreateDeliveryService {
       throw new AppError('You can only create deliveries between 8am and 5pm');
     }
 
-    const findDeliveryInSameDate = await this.deliveryRepository.findByDate({
-      date: deliveryDate,
+    const findDeliveriesByPerk = await this.deliveryRepository.findByPerk(
       perk_id,
+    );
+
+    const findDeliveryInSameHour = findDeliveriesByPerk.find(delivery => {
+      const date1 = date;
+      const date2 = delivery.date;
+
+      date1.setMinutes(0, 0, 0);
+      date2.setMinutes(0, 0, 0);
+
+      return isEqual(date1, date2);
     });
 
-    if (findDeliveryInSameDate) {
+    if (findDeliveryInSameHour) {
       throw new AppError('There already is a delivery scheduled for this date');
     }
 

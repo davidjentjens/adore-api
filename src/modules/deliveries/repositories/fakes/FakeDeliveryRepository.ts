@@ -5,8 +5,6 @@ import IDeliveryRepository from '../IDeliveryRepository';
 
 import Delivery from '../../infra/typeorm/entities/Delivery';
 
-import IFindByDateDTO from '../../dtos/IFindByDateDTO';
-
 class FakeDeliveryRepository implements IDeliveryRepository {
   private deliveries: Delivery[] = [];
 
@@ -34,15 +32,6 @@ class FakeDeliveryRepository implements IDeliveryRepository {
     );
 
     return findDeliveries;
-  }
-
-  public async findByDate(data: IFindByDateDTO): Promise<Delivery | undefined> {
-    const findDelivery = this.deliveries.filter(
-      delivery =>
-        delivery.date === data.date && delivery.perk_id === data.perk_id,
-    );
-
-    return findDelivery[0];
   }
 
   public async save(delivery: Delivery): Promise<Delivery> {

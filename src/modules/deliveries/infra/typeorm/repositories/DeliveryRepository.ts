@@ -1,7 +1,6 @@
 import IDeliveryRepository from '@modules/deliveries/repositories/IDeliveryRepository';
 import { Repository, getRepository } from 'typeorm';
 import IDeliveryDTO from '@modules/deliveries/dtos/IDeliveryDTO';
-import IFindByDateDTO from '@modules/deliveries/dtos/IFindByDateDTO';
 import Delivery from '../entities/Delivery';
 
 class DeliveryRepository implements IDeliveryRepository {
@@ -32,17 +31,6 @@ class DeliveryRepository implements IDeliveryRepository {
       .leftJoinAndSelect('perk.tier', 'tier')
       .leftJoinAndSelect('tier.business', 'business')
       .getOne();
-
-    return findDelivery;
-  }
-
-  public async findByDate({
-    date,
-    perk_id,
-  }: IFindByDateDTO): Promise<Delivery | undefined> {
-    const findDelivery = await this.ormRepository.findOne({
-      where: { date, perk_id },
-    });
 
     return findDelivery;
   }
