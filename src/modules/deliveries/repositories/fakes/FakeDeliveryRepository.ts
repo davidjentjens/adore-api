@@ -1,14 +1,21 @@
 import { uuid } from 'uuidv4';
 
 import IDeliveryDTO from '@modules/deliveries/dtos/IDeliveryDTO';
+
+import Perk from '@modules/businesses/infra/typeorm/entities/Perk';
+
 import IDeliveryRepository from '../IDeliveryRepository';
 
 import Delivery from '../../infra/typeorm/entities/Delivery';
 
+interface IRequest extends IDeliveryDTO {
+  perk?: Perk;
+}
+
 class FakeDeliveryRepository implements IDeliveryRepository {
   private deliveries: Delivery[] = [];
 
-  public async create(deliveryData: IDeliveryDTO): Promise<Delivery> {
+  public async create(deliveryData: IRequest): Promise<Delivery> {
     const delivery = new Delivery();
 
     Object.assign(delivery, { id: uuid() }, deliveryData);

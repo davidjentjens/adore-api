@@ -4,11 +4,16 @@ import IPerkDTO from '@modules/businesses/dtos/IPerkDTO';
 import IPerksRepository from '../IPerksRepository';
 
 import Perk from '../../infra/typeorm/entities/Perk';
+import Tier from '../../infra/typeorm/entities/Tier';
+
+interface IRequest extends IPerkDTO {
+  tier?: Tier;
+}
 
 class PerksRepository implements IPerksRepository {
   private perks: Perk[] = [];
 
-  public async create(perkData: IPerkDTO): Promise<Perk> {
+  public async create(perkData: IRequest): Promise<Perk> {
     const perk = new Perk();
 
     Object.assign(perk, { id: uuid() }, perkData);

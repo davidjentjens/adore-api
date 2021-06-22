@@ -1,15 +1,21 @@
 import { uuid } from 'uuidv4';
 
 import IDeliveryInstanceDTO from '@modules/deliveries/dtos/IDeliveryInstanceDTO';
+
 import IDeliveryInstanceRepository from '../IDeliveryInstanceRepository';
 
+import Delivery from '../../infra/typeorm/entities/Delivery';
 import DeliveryInstance from '../../infra/typeorm/entities/DeliveryInstance';
+
+interface IRequest extends IDeliveryInstanceDTO {
+  delivery?: Delivery;
+}
 
 class FakeDeliveryInstanceRepository implements IDeliveryInstanceRepository {
   private deliveryInstanceInstances: DeliveryInstance[] = [];
 
   public async create(
-    deliveryInstanceData: IDeliveryInstanceDTO,
+    deliveryInstanceData: IRequest,
   ): Promise<DeliveryInstance> {
     const deliveryInstance = new DeliveryInstance();
 

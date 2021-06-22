@@ -4,7 +4,6 @@ import AppError from '@shared/errors/AppError';
 
 import IDeliveryInstanceRepository from '@modules/deliveries/repositories/IDeliveryInstanceRepository';
 import IDeliveryRepository from '@modules/deliveries/repositories/IDeliveryRepository';
-import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
 import IDeliveryInstanceDTO from '../dtos/IDeliveryInstanceDTO';
 import DeliveryInstance from '../infra/typeorm/entities/DeliveryInstance';
@@ -21,16 +20,12 @@ class CreateDeliveryInstanceService {
 
     @inject('DeliveryRepository')
     private deliveryRepository: IDeliveryRepository,
-
-    @inject('CacheProvider')
-    private cacheProvider: ICacheProvider,
   ) {}
 
   public async execute({
     owner_id,
     client_id,
     delivery_id,
-    status,
   }: IRequest): Promise<DeliveryInstance> {
     const delivery = await this.deliveryRepository.findById(delivery_id);
 
@@ -38,10 +33,13 @@ class CreateDeliveryInstanceService {
       throw new AppError('Delivery not found');
     }
 
+    if (delivery.perk.tier.business.owner_id !== owner_id) {
+      throw new AppError('You are not the owner of this business', 403);
+    }
+
     const deliveryInstance = await this.deliveryInstanceRepository.create({
       client_id,
       delivery_id,
-      status,
     });
 
     return deliveryInstance;
