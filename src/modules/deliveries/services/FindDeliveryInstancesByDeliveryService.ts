@@ -4,7 +4,6 @@ import AppError from '@shared/errors/AppError';
 
 import IDeliveryInstanceRepository from '@modules/deliveries/repositories/IDeliveryInstanceRepository';
 import IDeliveryRepository from '@modules/deliveries/repositories/IDeliveryRepository';
-import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
 import DeliveryInstance from '../infra/typeorm/entities/DeliveryInstance';
 
@@ -20,9 +19,6 @@ class FindDeliveryInstancesByDeliveryService {
 
     @inject('DeliveryRepository')
     private deliveryRepository: IDeliveryRepository,
-
-    @inject('CacheProvider')
-    private cacheProvider: ICacheProvider,
   ) {}
 
   public async execute({ delivery_id }: IRequest): Promise<DeliveryInstance[]> {
@@ -32,9 +28,8 @@ class FindDeliveryInstancesByDeliveryService {
       throw new AppError('Delivery not found', 404);
     }
 
-    const deliveryInstances = await this.deliveryInstanceRepository.findByDelivery(
-      delivery_id,
-    );
+    const deliveryInstances =
+      await this.deliveryInstanceRepository.findByDelivery(delivery_id);
 
     return deliveryInstances;
   }

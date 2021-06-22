@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 
 import CreateDeliveryInstanceService from '@modules/deliveries/services/CreateDeliveryInstanceService';
 import FindDeliveryInstancesByDeliveryService from '@modules/deliveries/services/FindDeliveryInstancesByDeliveryService';
-import FindAllDeliveryInstancesFromClientService from '@modules/deliveries/services/FindAllDeliveryInstancesFromClientService';
+import FindAllDeliveryInstancesByClientService from '@modules/deliveries/services/FindAllDeliveryInstancesByClientService';
 import UpdateDeliveryInstanceStatusService from '@modules/deliveries/services/UpdateDeliveryInstanceStatusService';
 
 export default class DeliveryInstanceController {
@@ -19,7 +19,6 @@ export default class DeliveryInstanceController {
       owner_id,
       client_id,
       delivery_id,
-      status: 'pending',
     });
 
     return res.json(deliveryInstance);
@@ -42,11 +41,11 @@ export default class DeliveryInstanceController {
   public async findByClient(req: Request, res: Response): Promise<Response> {
     const { id: client_id } = req.params;
 
-    const findAllDeliveryInstancesFromClient = container.resolve(
-      FindAllDeliveryInstancesFromClientService,
+    const findAllDeliveryInstancesByClient = container.resolve(
+      FindAllDeliveryInstancesByClientService,
     );
 
-    const deliveryInstances = await findAllDeliveryInstancesFromClient.execute({
+    const deliveryInstances = await findAllDeliveryInstancesByClient.execute({
       client_id,
     });
 
