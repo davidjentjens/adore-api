@@ -11,7 +11,9 @@ deliveryInstanceRouter.put(
   '/:id',
   celebrate({
     [Segments.BODY]: {
-      status: Joi.string().required(),
+      status: Joi.string()
+        .valid('preparing', 'shipping', 'delivered', 'pending', 'blocked')
+        .required(),
     },
   }),
   ensureAuthenticated,

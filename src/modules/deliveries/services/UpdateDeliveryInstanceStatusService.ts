@@ -3,7 +3,6 @@ import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 
 import IDeliveryInstanceRepository from '@modules/deliveries/repositories/IDeliveryInstanceRepository';
-import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
 import DeliveryInstance from '../infra/typeorm/entities/DeliveryInstance';
 
@@ -18,9 +17,6 @@ class UpdateDeliveryInstanceStatusService {
   constructor(
     @inject('DeliveryInstanceRepository')
     private deliveryInstanceRepository: IDeliveryInstanceRepository,
-
-    @inject('CacheProvider')
-    private cacheProvider: ICacheProvider,
   ) {}
 
   public async execute({
@@ -38,18 +34,6 @@ class UpdateDeliveryInstanceStatusService {
 
     if (deliveryInstance.delivery.perk.tier.business.owner_id !== owner_id) {
       throw new AppError('You are not the owner of this business', 403);
-    }
-
-    if (
-      status !== 'blocked' &&
-      status !== 'delivered' &&
-      status !== 'pending' &&
-      status !== 'preparing' &&
-      status !== 'shipping'
-    ) {
-      throw new AppError(
-        'Invalid status. The available statuses are {blocked, delivered, pending, preparing, shipping}',
-      );
     }
 
     deliveryInstance.status = status;
