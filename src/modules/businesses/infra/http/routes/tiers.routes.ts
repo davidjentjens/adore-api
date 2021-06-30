@@ -6,7 +6,6 @@ import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAut
 import TierController from '../controllers/TierController';
 
 const tierRouter = Router();
-
 const tierController = new TierController();
 
 // List

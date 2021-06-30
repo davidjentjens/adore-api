@@ -39,9 +39,9 @@ class TierRepository implements ITierRepository {
       .createQueryBuilder('tier')
       .where({ id: tier_id })
       .leftJoinAndSelect('tier.business', 'business')
-      .getMany();
+      .getOne();
 
-    return tier[0] ? tier[0] : undefined;
+    return tier;
   }
 
   public async findByName(name: string): Promise<Tier | undefined> {

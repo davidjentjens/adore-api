@@ -50,6 +50,7 @@ class BusinessClientRepository implements IBusinessClientRepository {
         client_id,
       })
       .leftJoinAndSelect('business_client.tier', 'tier')
+      .leftJoinAndSelect('tier.business', 'business')
       .getMany();
   }
 

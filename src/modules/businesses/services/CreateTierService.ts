@@ -61,23 +61,6 @@ class CreateTierService {
       throw new AppError('A tier by this name already exists');
     }
 
-    /* if (rank) {
-      const findTierWithSameRank = await this.tierRepository.findByRank(rank);
-
-      if (findTierWithSameRank) {
-        throw new AppError('A tier with this rank already exists');
-      }
-
-      const tier = await this.tierRepository.create({
-        business_id,
-        name,
-        value,
-        rank,
-      });
-
-      return tier;
-    } */
-
     const tier = await this.tierRepository.create({
       business_id,
       name,

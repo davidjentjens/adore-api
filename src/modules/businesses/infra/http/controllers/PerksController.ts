@@ -3,7 +3,6 @@ import { container } from 'tsyringe';
 
 import CreatePerkService from '@modules/businesses/services/CreatePerkService';
 import ListPerksByTierService from '@modules/businesses/services/ListPerksByTierService';
-import FindUserNextPerkService from '@modules/businesses/services/FindUserNextPerkService';
 import DeletePerkService from '@modules/businesses/services/DeletePerkService';
 
 export default class PerksController {
@@ -34,18 +33,6 @@ export default class PerksController {
     });
 
     return res.json(foundPerks);
-  }
-
-  public async findClosest(req: Request, res: Response): Promise<Response> {
-    const { id: client_id } = req.user;
-
-    const findUserNextPerk = container.resolve(FindUserNextPerkService);
-
-    const foundUserNextPerk = await findUserNextPerk.execute({
-      client_id,
-    });
-
-    return res.json(foundUserNextPerk);
   }
 
   public async delete(req: Request, res: Response): Promise<Response> {

@@ -19,7 +19,7 @@ categoriesRouter.post(
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
-      image_url: Joi.string().guid().required(),
+      image_url: Joi.string().required(),
     },
   }),
   categoriesController.create,

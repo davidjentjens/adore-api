@@ -34,7 +34,7 @@ class CreateCategoryService {
       throw new AppError('User does not exist');
     }
 
-    if (findUser.name !== 'admin') {
+    if (findUser.name !== 'admin' && findUser.name !== 'Admin') {
       throw new AppError('Only admin users can create a category');
     }
 
