@@ -9,6 +9,7 @@ import 'express-async-errors';
 import uploadConfig from '@config/upload';
 import AppError from '@shared/errors/AppError';
 import rateLimiter from './middlewares/rateLimiter';
+import log from './middlewares/log';
 import routes from './routes';
 
 import '@shared/infra/typeorm';
@@ -20,6 +21,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(rateLimiter);
+app.use(log);
 app.use(routes);
 
 app.use(errors());
